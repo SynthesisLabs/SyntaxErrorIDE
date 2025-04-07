@@ -1,0 +1,27 @@
+Techstack:
+	front-end:
+		html
+		scss
+	back-end:
+		asp.net
+		c#
+
+Takenverdeling:
+Martijn: Aanvuller/Tester
+Roy: project-Leider/back-end/front-end
+Jason back-end
+Ryan: back-end/front-end/Tester
+Swen: back-end/front-end
+
+Ideeën-lijst:
+	layout links file explorer boven gwn header rechts daardwerkelijke text editor
+	auto bracket
+	Theme-selector
+	Register
+	Login
+	optie om nieuw bestand te maken terwijl iemand aan het werken is in een project
+	undo
+	file-overview
+	Op opening wordt gebruiker gevraagd om bestand te openen local of dat de gebruiker een nieuw bestand aanmaakt(kan gedaan worden door gwn een leeg textarea aan te maken)
+Color-palet:
+https://coolors.co/172121-444554-62606b-7f7b82-bfacb5-e5d0cc
