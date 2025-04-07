@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Jason\\source\\repos\\SyntaxErrorIDE\\SyntaxErrorIDE\\SyntaxErrorIDE.csproj": {}
+    "C:\\laragon\\www\\blok_b\\Native\\SyntaxErrorIDE\\SyntaxErrorIDE\\SyntaxErrorIDE.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Jason\\source\\repos\\SyntaxErrorIDE\\SyntaxErrorIDE\\SyntaxErrorIDE.csproj": {
+    "C:\\laragon\\www\\blok_b\\Native\\SyntaxErrorIDE\\SyntaxErrorIDE\\SyntaxErrorIDE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jason\\source\\repos\\SyntaxErrorIDE\\SyntaxErrorIDE\\SyntaxErrorIDE.csproj",
+        "projectUniqueName": "C:\\laragon\\www\\blok_b\\Native\\SyntaxErrorIDE\\SyntaxErrorIDE\\SyntaxErrorIDE.csproj",
         "projectName": "SyntaxErrorIDE",
-        "projectPath": "C:\\Users\\Jason\\source\\repos\\SyntaxErrorIDE\\SyntaxErrorIDE\\SyntaxErrorIDE.csproj",
+        "projectPath": "C:\\laragon\\www\\blok_b\\Native\\SyntaxErrorIDE\\SyntaxErrorIDE\\SyntaxErrorIDE.csproj",
         "packagesPath": "C:\\Users\\Jason\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jason\\source\\repos\\SyntaxErrorIDE\\SyntaxErrorIDE\\obj\\",
+        "outputPath": "C:\\laragon\\www\\blok_b\\Native\\SyntaxErrorIDE\\SyntaxErrorIDE\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
