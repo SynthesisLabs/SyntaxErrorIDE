@@ -11,15 +11,11 @@ public class AccountController : Controller
     {
         _loginService = loginService;
     }
-
+    
+    
     [HttpPost]
-    public IActionResult Login(string name, string password)
+    public IActionResult Login([FromForm] string name, [FromForm] string password)
     {
-        if (_loginService.Login(name, password))
-        {
-            return RedirectToAction("Index", "Home");
-        }
-        ViewBag.Error = "Invalid login attempt";
-        return View();
+        return Content(_loginService.Login(name, password) ? "Login successful" : "Login unsuccessful");
     }
 }
