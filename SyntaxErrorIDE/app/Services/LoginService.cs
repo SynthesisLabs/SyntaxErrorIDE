@@ -12,13 +12,13 @@ public class LoginService
     {
         _httpContextAccessor = httpContextAccessor;
     }
-    public bool Login(string email, string password)
+    public bool Login(string name, string password)
     {
         var users = User.GetAllUsers();
         foreach (var user in users)
         {
-            if (user.email != email) continue;
-            var reader = Conn.GetReader($"SELECT * FROM users WHERE email = '{email}'");
+            if (user.name != name) continue;
+            var reader = Conn.GetReader($"SELECT * FROM users WHERE name = '{name}'");
             while (reader.Read())
             {
                 var savedPasswordHash = reader.GetString(reader.GetOrdinal("password"));
@@ -26,7 +26,7 @@ public class LoginService
                 
                 var userId = reader.GetInt32(reader.GetOrdinal("id"));
                 _httpContextAccessor.HttpContext?.Session.SetInt32("UserId", userId);
-                _httpContextAccessor.HttpContext?.Session.SetString("UserEmail", email);
+                _httpContextAccessor.HttpContext?.Session.SetString("UserName", name);
                 
                 reader.Close();
                 return true;
@@ -36,7 +36,7 @@ public class LoginService
         return false;
     }
     
-    public string Register(string? email, string? password, string? secondPassword)
+    public string Register(string? name,string? email, string? password, string? secondPassword)
     {
         if (string.IsNullOrEmpty(email) || 
             string.IsNullOrEmpty(password) || 
@@ -62,7 +62,7 @@ public class LoginService
         }
         
         var hashedPassword = Password.Hash(password);
-        reader = Conn.GetReader($"INSERT INTO users (email, password) VALUES ('{email}', '{hashedPassword}')");
+        reader = Conn.GetReader($"INSERT INTO users (name, email, password) VALUES ('{name}','{email}', '{hashedPassword}')");
         reader.Close();
         
         Login(email, password);

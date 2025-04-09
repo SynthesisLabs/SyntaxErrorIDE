@@ -13,9 +13,9 @@ public class AccountController : Controller
     }
 
     [HttpPost]
-    public IActionResult Login(string email, string password)
+    public IActionResult Login(string name, string password)
     {
-        if (_loginService.Login(email, password))
+        if (_loginService.Login(name, password))
         {
             return RedirectToAction("Index", "Home");
         }

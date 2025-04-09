@@ -5,6 +5,7 @@ namespace SyntaxErrorIDE.app.Models;
 
 public class User
 {
+    public string name { get; set; }
     public int id { get; set; }
     public string? email { get; set; }
 
@@ -15,6 +16,7 @@ public class User
         {
             this.id = id;
             email = reader.GetString(reader.GetOrdinal("email"));
+            name = reader.GetString(reader.GetOrdinal("name"));
         }
         reader.Close();
     }
