@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TmZvBG2jMFw=",
+  "dgSpecHash": "thOhQsl+Op0=",
   "success": true,
-  "projectFilePath": "C:\\laragon\\www\\blok_b\\Native\\SyntaxErrorIDE\\SyntaxErrorIDE\\SyntaxErrorIDE.csproj",
+  "projectFilePath": "C:\\Users\\Jason\\RiderProjects\\PRA\\B2\\SyntaxErrorIDE\\SyntaxErrorIDE\\SyntaxErrorIDE.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jason\\.nuget\\packages\\dotnetenv\\3.1.1\\dotnetenv.3.1.1.nupkg.sha512",
     "C:\\Users\\Jason\\.nuget\\packages\\microsoft.extensions.configuration\\1.1.2\\microsoft.extensions.configuration.1.1.2.nupkg.sha512",
@@ -83,7 +83,11 @@
     "C:\\Users\\Jason\\.nuget\\packages\\system.threading.tasks.extensions\\4.3.0\\system.threading.tasks.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\Jason\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\Jason\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "C:\\Users\\Jason\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
+    "C:\\Users\\Jason\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
+    "C:\\Users\\Jason\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.11\\microsoft.netcore.app.ref.8.0.11.nupkg.sha512",
+    "C:\\Users\\Jason\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.11\\microsoft.windowsdesktop.app.ref.8.0.11.nupkg.sha512",
+    "C:\\Users\\Jason\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.11\\microsoft.aspnetcore.app.ref.8.0.11.nupkg.sha512",
+    "C:\\Users\\Jason\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.11\\microsoft.netcore.app.host.win-x64.8.0.11.nupkg.sha512"
   ],
   "logs": []
 }
