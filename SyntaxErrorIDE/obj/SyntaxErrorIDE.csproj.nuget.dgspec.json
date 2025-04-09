@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\laragon\\www\\blok_b\\Native\\SyntaxErrorIDE\\SyntaxErrorIDE\\SyntaxErrorIDE.csproj": {}
+    "C:\\laragon\\www\\syntaxError\\SyntaxErrorIDE\\SyntaxErrorIDE\\SyntaxErrorIDE.csproj": {}
   },
   "projects": {
-    "C:\\laragon\\www\\blok_b\\Native\\SyntaxErrorIDE\\SyntaxErrorIDE\\SyntaxErrorIDE.csproj": {
+    "C:\\laragon\\www\\syntaxError\\SyntaxErrorIDE\\SyntaxErrorIDE\\SyntaxErrorIDE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\laragon\\www\\blok_b\\Native\\SyntaxErrorIDE\\SyntaxErrorIDE\\SyntaxErrorIDE.csproj",
+        "projectUniqueName": "C:\\laragon\\www\\syntaxError\\SyntaxErrorIDE\\SyntaxErrorIDE\\SyntaxErrorIDE.csproj",
         "projectName": "SyntaxErrorIDE",
-        "projectPath": "C:\\laragon\\www\\blok_b\\Native\\SyntaxErrorIDE\\SyntaxErrorIDE\\SyntaxErrorIDE.csproj",
-        "packagesPath": "C:\\Users\\Jason\\.nuget\\packages\\",
-        "outputPath": "C:\\laragon\\www\\blok_b\\Native\\SyntaxErrorIDE\\SyntaxErrorIDE\\obj\\",
+        "projectPath": "C:\\laragon\\www\\syntaxError\\SyntaxErrorIDE\\SyntaxErrorIDE\\SyntaxErrorIDE.csproj",
+        "packagesPath": "C:\\Users\\ryanv\\.nuget\\packages\\",
+        "outputPath": "C:\\laragon\\www\\syntaxError\\SyntaxErrorIDE\\SyntaxErrorIDE\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Jason\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ryanv\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -74,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.407/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.405/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

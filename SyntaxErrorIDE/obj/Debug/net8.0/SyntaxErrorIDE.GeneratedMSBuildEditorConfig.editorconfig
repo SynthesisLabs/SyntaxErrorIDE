@@ -9,15 +9,19 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SyntaxErrorIDE
 build_property.RootNamespace = SyntaxErrorIDE
-build_property.ProjectDir = C:\laragon\www\blok_b\Native\SyntaxErrorIDE\SyntaxErrorIDE\
+build_property.ProjectDir = C:\laragon\www\syntaxError\SyntaxErrorIDE\SyntaxErrorIDE\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\laragon\www\blok_b\Native\SyntaxErrorIDE\SyntaxErrorIDE
+build_property.MSBuildProjectDirectory = C:\laragon\www\syntaxError\SyntaxErrorIDE\SyntaxErrorIDE
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/laragon/www/blok_b/Native/SyntaxErrorIDE/SyntaxErrorIDE/Pages/Index.cshtml]
+[C:/laragon/www/syntaxError/SyntaxErrorIDE/SyntaxErrorIDE/Pages/404.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcNDA0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/laragon/www/syntaxError/SyntaxErrorIDE/SyntaxErrorIDE/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
