@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SyntaxErrorIDE")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a0ace7b44d9a0f16f2ee1fedf5e132081ea63306")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d34e2d752b88b029d97150863da65d0265e99dba")]
 [assembly: System.Reflection.AssemblyProductAttribute("SyntaxErrorIDE")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SyntaxErrorIDE")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
