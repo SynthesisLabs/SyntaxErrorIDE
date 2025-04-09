@@ -10,6 +10,7 @@
     <title>Home</title>
 </head>
 <body>
+@await Html.PartialAsync("~/Pages/views/header.cshtml")
 <form method="post" asp-controller="Account" asp-action="Login">
     <div class="form-group">
         <label for="email">Email:</label>
@@ -21,5 +22,6 @@
     </div>
     <button type="submit" class="btn btn-primary">Login</button>
 </form>
+@await Html.PartialAsync("~/Pages/views/footer.cshtml")
 </body>
 </html>
