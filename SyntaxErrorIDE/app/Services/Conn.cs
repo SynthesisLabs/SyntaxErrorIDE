@@ -21,5 +21,13 @@ namespace SyntaxErrorIDE.app.Services
         {
             return new MySqlConnection(ConnectionString);
         }
+
+        public static MySqlDataReader GetReader(string query)
+        {
+            var con = GetConnection();
+            con.Open();
+            var cmd = new MySqlCommand(query, con);
+            return cmd.ExecuteReader();
+        }
     }
 }
