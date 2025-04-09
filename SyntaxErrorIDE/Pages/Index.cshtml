@@ -4,18 +4,18 @@
     ViewData["Title"] = "Home page";
 }
 <head>
-    <link rel="stylesheet" type="text/css" href="sass/site.scss">
+    @await Html.PartialAsync("~/Pages/views/head.cshtml")
     <title>Home</title>
 </head>
 <body>
-    <header></header>
-    <main>
-        <div class="container">
-            <h1>Welcome to SyntaxError IDE</h1>
-            <p>Your go-to solution for all your coding needs.</p>
-            <p>Explore our features and start coding today!</p>
-            <a href="/Editor" class="btn btn-primary">Start Coding</a>
-        </div>
-    </main>
-    <footer></footer>
+@await Html.PartialAsync("~/Pages/views/header.cshtml")
+<main>
+    <div class="container">
+        <h1>Welcome to SyntaxError IDE</h1>
+        <p>Your go-to solution for all your coding needs.</p>
+        <p>Explore our features and start coding today!</p>
+        <a href="/Editor" class="btn btn-primary">Start Coding</a>
+    </div>
+</main>
+@await Html.PartialAsync("~/Pages/views/footer.cshtml")
 </body>
