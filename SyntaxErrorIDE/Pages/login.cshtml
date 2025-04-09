@@ -1,0 +1,25 @@
+﻿@page
+@model SyntaxErrorIDE.Pages.LoginModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<!doctype html>
+<html lang="en">
+<head>
+    @await Html.PartialAsync("~/Pages/views/head.cshtml")
+    <title>Home</title>
+</head>
+<body>
+<form method="post" asp-controller="Account" asp-action="Login">
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+</body>
+</html>

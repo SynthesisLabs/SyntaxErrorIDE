@@ -1,4 +1,8 @@
+using System;
 using DotNetEnv;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using SyntaxErrorIDE.app.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +27,10 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
