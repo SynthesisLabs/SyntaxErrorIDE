@@ -1,0 +1,28 @@
+info
+
+Front-end:
+    HTML
+    SCSS
+    Tailwind CSS
+
+Back-end:
+    ASP.NET
+    C#
+
+Task Distribution
+    Martijn: Fill in  / Testing
+    Roy: Project operator / Back-end / Front-end
+    Jason: Back-end
+    Ryan: Back-end / Front-end / Testing
+    Swen: Back-end / Front-end
+
+Color Palette
+View Palette on Coolors
+https://coolors.co/172121-444554-62606b-7f7b82-bfacb5-e5d0cc
+
+#172121 — Dark Slate
+#444554 — Steel Grey
+#62606B — Dusty Charcoal
+#7F7B82 — Muted Purple
+#BFACB5 — Pale Mauve
+#E5D0CC — Soft Rose
