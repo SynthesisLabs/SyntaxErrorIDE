@@ -33,3 +33,5 @@ SyntaxErrorIDE.csproj.user
 .hh
 .gyp
 .mjs
+.htaccess
+.xml
