@@ -12,10 +12,10 @@
     <main>
     @if (Model.StatusCode == 404)
     {
-        <div class="flex-column; justify-content-center; align-content-center; m-auto;">
+        <div class="errfof">
             <h1>404</h1>
             <h2>Page Not Found</h2>
-            <p>The page you're looking for doesn't do you wish to go <a asp-page="/Index" class="btn btn-primary">Home?</a></p>
+            <p>The page you're looking for doesn't do you wish to go <a href="/">home?</a></p>
         </div>
     }
     else
