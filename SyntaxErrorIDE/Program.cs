@@ -28,6 +28,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseStatusCodePagesWithReExecute("/Error/{0}");
+
 app.MapControllerRoute(
     name: "login",
     pattern: "{controller=Account}/{action=login}/{name?}/{password?}");
