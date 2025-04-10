@@ -1,0 +1,17 @@
+@page
+@model SyntaxErrorIDE.Pages.LoginModel
+@{
+ViewData["Title"] = "template";
+}
+<!doctype html>
+<html lang="en">
+<head>
+    @await Html.PartialAsync("~/Pages/views/head.cshtml")
+    <title>template</title>
+</head>
+<body>
+@await Html.PartialAsync("~/Pages/views/header.cshtml")
+
+@await Html.PartialAsync("~/Pages/views/footer.cshtml")
+</body>
+</html>
