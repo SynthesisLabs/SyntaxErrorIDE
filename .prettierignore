@@ -1,0 +1,35 @@
+# igore iportant dirs
+node_modules/
+dist/
+.idea/
+.github/
+
+# ignore important files
+.env
+.env.example
+.gitignore
+.prettierignore
+.editorconfig
+.gitattributes
+package-lock.json
+package.json
+SyntaxErrorIDE.sln
+
+# igore iportant dirs in the app
+bin/
+obj/
+
+# igore iportant dirs in the app
+SyntaxerrorIDE.csproj
+SyntaxErrorIDE.csproj.user
+
+# ignore certain tags
+.sln
+.csproj
+.md
+.json
+.node
+.cc
+.hh
+.gyp
+.mjs
