@@ -29,8 +29,8 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Account}/{action=Login}/{id?}");
+    name: "login",
+    pattern: "{controller=Account}/{action=login}/{name?}/{password?}");
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
