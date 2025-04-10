@@ -23,11 +23,12 @@ namespace SyntaxErrorIDE.app.Services
             return new MySqlConnection(ConnectionString);
         }
 
-        public static MySqlDataReader GetReader(string query)
+        public static MySqlDataReader GetReader(string query, params MySqlParameter[] parameters)
         {
             var con = GetConnection();
             con.Open();
             var cmd = new MySqlCommand(query, con);
+            cmd.Parameters.AddRange(parameters);
             return cmd.ExecuteReader();
         }
     }
