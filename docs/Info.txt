@@ -2,7 +2,6 @@ info
 
 Front-end:
     HTML
-    SCSS
     Tailwind CSS
 
 Back-end:
