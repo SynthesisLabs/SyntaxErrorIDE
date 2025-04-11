@@ -40,7 +40,8 @@ public class LoginService
     
     public string Register(string? name,string? email, string? password, string? secondPassword)
     {
-        if (string.IsNullOrEmpty(email) || 
+        if (string.IsNullOrEmpty(name) ||
+            string.IsNullOrEmpty(email) || 
             string.IsNullOrEmpty(password) || 
             string.IsNullOrEmpty(secondPassword))
         {
@@ -54,21 +55,29 @@ public class LoginService
         {
             if (reader.GetString(reader.GetOrdinal("email")) != email) continue;
             reader.Close();
-            return "Email already exists";
+            return "There is already an account with this email";
+        }
+        
+        var mySqlDataReader = Conn.GetReader($"SELECT * FROM users WHERE name = @name", new MySqlParameter("@name", name));
+        while (mySqlDataReader.Read())
+        {
+            if (mySqlDataReader.GetString(mySqlDataReader.GetOrdinal("name")) != name) continue;
+            mySqlDataReader.Close();
+            return "There is already an account with this name";
         }
         
         if (password != secondPassword)
         {
-            reader.Close();
+            mySqlDataReader.Close();
             return "Passwords do not match";
         }
         
         var hashedPassword = Password.Hash(password);
-        reader = Conn.GetReader("INSERT INTO users (name, email, password) VALUES (@name, @name, @password)", 
+        mySqlDataReader = Conn.GetReader("INSERT INTO users (name, email, password) VALUES (@name, @email, @password)", 
             new MySqlParameter("@name", name), 
-            new MySqlParameter("@name", email), 
+            new MySqlParameter("@email", email), 
             new MySqlParameter("@password", hashedPassword));
-        reader.Close();
+        mySqlDataReader.Close();
         
         Login(email, password);
         return "User registered successfully";
