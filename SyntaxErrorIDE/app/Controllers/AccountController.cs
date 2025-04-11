@@ -16,6 +16,14 @@ public class AccountController : Controller
     [HttpPost]
     public IActionResult Login([FromForm] string name, [FromForm] string password)
     {
-        return Content(_loginService.Login(name, password) ? "Login successful" : "Login unsuccessful");
+        var sucess = _loginService.Login(name, password);
+
+        if (sucess)
+        {
+            return Redirect("/");
+        }
+        
+        ViewBag.Message = "Login failed";
+        return View("login");
     }
 }
