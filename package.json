@@ -7,7 +7,7 @@
     "tailwindcss": "^4.1.3"
   },
     "scripts": {
-        "build:css": "npx tailwindcss -i ./SyntaxErrorIDE/wwwroot/sass/input.css -o ./SyntaxErrorIDE/wwwroot/sass/output.css --watch"
+        "build:css": "npx tailwindcss -i ./SyntaxErrorIDE/wwwroot/style/input.css -o ./SyntaxErrorIDE/wwwroot/style/output.css --watch"
     }
 
 }
