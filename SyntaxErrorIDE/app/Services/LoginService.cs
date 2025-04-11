@@ -28,6 +28,7 @@ public class LoginService
                 var userId = reader.GetInt32(reader.GetOrdinal("id"));
                 _httpContextAccessor.HttpContext?.Session.SetInt32("UserId", userId);
                 _httpContextAccessor.HttpContext?.Session.SetString("UserName", name);
+                _httpContextAccessor.HttpContext?.Session.SetString("is_logged", "true");
                 
                 reader.Close();
                 return true;
