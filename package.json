@@ -9,5 +9,4 @@
     "scripts": {
         "build:css": "npx tailwindcss -i ./SyntaxErrorIDE/wwwroot/style/input.css -o ./SyntaxErrorIDE/wwwroot/style/output.css --watch"
     }
-
 }
