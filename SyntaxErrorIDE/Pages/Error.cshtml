@@ -6,13 +6,14 @@
 <!doctype html>
 <html lang="en">
 <head>
+    @await Html.PartialAsync("~/Pages/views/head.cshtml")
     <title>@Model.StatusCode</title>
 </head>
 <body>
-    <main>
+<main>
     @if (Model.StatusCode == 404)
     {
-        <div class="errfof">
+        <div id="errfof" class="flex-col justify-center items-center m-auto">
             <h1>404</h1>
             <h2>Page Not Found</h2>
             <p>The page you're looking for doesn't do you wish to go <a href="/">home?</a></p>
@@ -30,6 +31,6 @@
             </p>
         }
     }
-    </main>
+</main>
 </body>
 </html>
