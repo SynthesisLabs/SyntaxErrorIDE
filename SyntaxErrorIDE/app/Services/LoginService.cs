@@ -61,6 +61,11 @@ public class LoginService
         var mySqlDataReader = Conn.GetReader($"SELECT * FROM users WHERE name = @name", new MySqlParameter("@name", name));
         while (mySqlDataReader.Read())
         {
+            if (!new EmailAddressAttribute().IsValid(email))
+            {
+                return "Email is not valid";
+            }
+
             if (mySqlDataReader.GetString(mySqlDataReader.GetOrdinal("name")) != name) continue;
             mySqlDataReader.Close();
             return "There is already an account with this name";

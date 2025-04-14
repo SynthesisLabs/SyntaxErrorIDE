@@ -30,25 +30,12 @@ public class AccountController : Controller
     [HttpGet]
     public IActionResult Register()
     {
-        return View();
+        return RedirectToPage("/Register");
     }
-    
+
     [HttpPost]
     public IActionResult Register([FromForm] string email, [FromForm] string name, [FromForm] string password, [FromForm] string passwordRepeat)
     {
-        if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || 
-            string.IsNullOrEmpty(password) || string.IsNullOrEmpty(passwordRepeat))
-        {
-            ViewBag.Message = "Please fill in all fields";
-            return View();
-        }
-
-        if (!new EmailAddressAttribute().IsValid(email))
-        {
-            ViewBag.Message = "Email is not valid";
-            return View();
-        }
-
         var result = _loginService.Register(name, email, password, passwordRepeat);
 
         if (result == "User registered successfully")
@@ -56,7 +43,7 @@ public class AccountController : Controller
             return Redirect("/");
         }
 
-        ViewBag.Message = result;
-        return View();
+        TempData["Message"] = result;
+        return RedirectToPage("/Register");
     }
 }

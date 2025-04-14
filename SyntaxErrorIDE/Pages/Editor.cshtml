@@ -6,25 +6,50 @@
 }
 
 <!DOCTYPE html>
-
 <html>
-    <head>
-        <title></title>
-        <link rel="stylesheet" type="text/css" href="sass/site.css">
-    </head>
-    <body>
-        <main>
-            <div id="editor">
-                <aside id="sidebar">
-                    <h2>File Explorer</h2>
-                    <ul id="file-list">
-                        <!-- File list will be populated here -->
-                    </ul>
-                </aside>
-                <textarea id="code-editor" spellcheck="false"></textarea>
-            </div>
-        </main>
+<head>
+    <title>Syntax Error IDE</title>
+    <style>
+        .editor-container {
+            display: flex;
+            font-family: monospace;
+            font-size: 14px;
+            height: 300px;
+            margin: 20px 0;
+            border: 1px solid #ccc;
+        }
 
+        .line-numbers {
+            width: 10px;
+            background-color: #f0f0f0;
+            text-align: right;
+            padding: 5px;
+            overflow-y: hidden;
+            user-select: none;
+            line-height: 1.5rem;
+            white-space: pre;
+        }
 
-    </body>
+        .editor-textarea {
+            flex: 1;
+            padding: 5px;
+            resize: none;
+            border: none;
+            outline: none;
+            overflow-x: scroll;
+            line-height: 1.5rem;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+    </style>
+</head>
+<body>
+<div class="editor-container">
+    <div class="line-numbers" id="line-numbers">1</div>
+    <textarea class="editor-textarea" id="code-editor" spellcheck="false"></textarea>
+</div>
+
+<script src="js/lineNumbers.js"> </script>
+</body>
 </html>
