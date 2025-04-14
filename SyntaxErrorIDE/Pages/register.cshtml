@@ -1,0 +1,35 @@
+@page
+@model SyntaxErrorIDE.Pages.LoginModel
+@{
+    ViewData["Title"] = "Register";
+}
+<!doctype html>
+<html lang="en">
+<head>
+    @await Html.PartialAsync("~/Pages/views/head.cshtml")
+    <title>Register</title>
+</head>
+<body>
+@await Html.PartialAsync("~/Pages/views/header.cshtml")
+<form method="post" action="/account/register">
+    <div class="form-group">
+        <label for="name">Username:</label>
+        <input type="text" id="name" name="name" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="email">E-mail:</label>
+        <input type="email" name="email" id="email" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="passwordRepeat">Repeat password:</label>
+        <input type="password" id="passwordRepeat" name="passwordRepeat" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+@await Html.PartialAsync("~/Pages/views/footer.cshtml")
+</body>
+</html>

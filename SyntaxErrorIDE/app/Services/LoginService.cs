@@ -38,12 +38,12 @@ public class LoginService
         return false;
     }
     
-    public string Register(string? name,string? email, string? password, string? secondPassword)
+    public string Register(string? name,string? email, string? password, string? passwordRepeat)
     {
         if (string.IsNullOrEmpty(name) ||
             string.IsNullOrEmpty(email) || 
             string.IsNullOrEmpty(password) || 
-            string.IsNullOrEmpty(secondPassword))
+            string.IsNullOrEmpty(passwordRepeat))
         {
             return "Please fill in all fields";
         }
@@ -66,7 +66,7 @@ public class LoginService
             return "There is already an account with this name";
         }
         
-        if (password != secondPassword)
+        if (password != passwordRepeat)
         {
             mySqlDataReader.Close();
             return "Passwords do not match";
