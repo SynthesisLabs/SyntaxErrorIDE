@@ -1,0 +1,23 @@
+# IDE & Editor settings
+.idea/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Git & GitHub
+.git/
+.gitignore
+.github/
+
+# Build artifacts
+bin/
+obj/
+
+# Environment
+.env
+*.log
+
+# Node / Frontend (if applicable)
+node_modules/

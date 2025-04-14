@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.3",
+    "tailwind": "^4.0.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.3"
+  },
+    "scripts": {
+        "build:css": "npx tailwindcss -i ./SyntaxErrorIDE/wwwroot/style/input.css -o ./SyntaxErrorIDE/wwwroot/style/output.css --watch"
+    }
+}

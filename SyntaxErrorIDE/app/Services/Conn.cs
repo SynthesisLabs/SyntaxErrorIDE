@@ -10,16 +10,26 @@ namespace SyntaxErrorIDE.app.Services
         static Conn()
         {
             var host = Env.GetString("DB_HOST");
+            var port = Env.GetInt("DB_PORT");
             var name = Env.GetString("DB_NAME");
             var user = Env.GetString("DB_USER");
             var pass = Env.GetString("DB_PASS");
 
-            ConnectionString = $"Server={host};Database={name};Uid={user};Pwd={pass}";
+            ConnectionString = $"Server={host};Port={port};Database={name};Uid={user};Pwd={pass}";
         }
 
         public static MySqlConnection GetConnection()
         {
             return new MySqlConnection(ConnectionString);
+        }
+
+        public static MySqlDataReader GetReader(string query, params MySqlParameter[] parameters)
+        {
+            var con = GetConnection();
+            con.Open();
+            var cmd = new MySqlCommand(query, con);
+            cmd.Parameters.AddRange(parameters);
+            return cmd.ExecuteReader();
         }
     }
 }
