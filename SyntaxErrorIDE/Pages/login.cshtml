@@ -3,6 +3,10 @@
 @{
     ViewData["Title"] = "login";
 }
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="alert alert-danger">@ViewBag.Message</div>
+}
 <!doctype html>
 <html lang="en">
 
