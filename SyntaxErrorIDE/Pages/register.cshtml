@@ -1,14 +1,7 @@
 @page
-{
-    <div class="alert alert-danger">@ViewBag.Message</div>
-}
-@model SyntaxErrorIDE.Pages.LoginModel
+
 @{
     ViewData["Title"] = "Register";
-}
-@if (!string.IsNullOrEmpty(ViewBag.Message))
-{
-    <div class="alert alert-danger">@ViewBag.Message</div>
 }
 <!doctype html>
 <html lang="en">
@@ -18,7 +11,7 @@
 </head>
 <body>
 @await Html.PartialAsync("~/Pages/views/header.cshtml")
-<form method="post" action="/account/register">
+<form method="post" action="/account/Register">
     <div class="form-group">
         <label for="name">Username:</label>
         <input type="text" id="name" name="name" class="form-control" required>
