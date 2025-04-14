@@ -20,3 +20,35 @@
 .flex-column {
     flex-direction: column;
 }
+
+.editor-container {
+    display: flex;
+    font-family: monospace;
+    font-size: 14px;
+    height: 300px;
+    margin: 20px 0;
+    border: 1px solid #ccc;
+}
+
+.line-numbers {
+    width: 10px;
+    background-color: #f0f0f0;
+    text-align: right;
+    padding: 5px;
+    overflow-y: hidden;
+    user-select: none;
+    line-height: 1.5rem;
+    white-space: pre;
+}
+
+.editor-textarea {
+    flex: 1;
+    padding: 5px;
+    resize: none;
+    border: none;
+    outline: none;
+    overflow-x: scroll;
+    line-height: 1.5rem;
+    white-space: pre;
+    word-wrap: normal;
+}
