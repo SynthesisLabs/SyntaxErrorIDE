@@ -3,6 +3,10 @@
 @{
     ViewData["Title"] = "login";
 }
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="alert alert-danger">@ViewBag.Message</div>
+}
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,6 +24,7 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" class="form-control" required>
     </div>
+    <p>Dont have an account yet? <a href="/register">Register</a></p>
     <button type="submit" class="btn btn-primary">Login</button>
 </form>
 @await Html.PartialAsync("~/Pages/views/footer.cshtml")

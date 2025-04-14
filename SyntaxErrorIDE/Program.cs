@@ -34,6 +34,10 @@ app.MapControllerRoute(
     name: "login",
     pattern: "{controller=Account}/{action=login}/{name?}/{password?}");
 
+app.MapControllerRoute(
+    name: "register",
+    pattern: "{controller=Account}/{action=register}/{name?}/{email?}/{password?}/{passwordRepeat?}");
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
