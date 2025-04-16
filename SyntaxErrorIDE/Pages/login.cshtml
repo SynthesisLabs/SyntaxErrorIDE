@@ -22,16 +22,16 @@
             <h1 class="text-5xl font-bold">Welcome Back!</h1>
         </div>
 
-        <div class="w-[30%] h-[100vh] bg-[#444554] flex items-center">
-            <form method="post" action="/account/login" class="w-full max-w-sm space-y-6">
+        <div class="w-[30%] h-[100vh] bg-[#444554] flex items-center justify-center">
+            <form method="post" action="/account/login" class="max-w-sm space-y-6 flex justify-center flex-column">
                 <h2 class="text-2xl font-semibold text-gray-800">Login to Your Account</h2>
                 <div>
                     <label for="name">Username</label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name" class="w-[80%]" required>
                 </div>
                 <div>
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" class="w-[80%]" name="password" required>
                 </div>
                 <button type="submit">Login</button>
             </form>
