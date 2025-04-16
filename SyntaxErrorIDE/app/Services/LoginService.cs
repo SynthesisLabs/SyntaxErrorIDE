@@ -43,46 +43,40 @@ public class LoginService
         if (string.IsNullOrEmpty(name) ||
             string.IsNullOrEmpty(email) || 
             string.IsNullOrEmpty(password) || 
-            string.IsNullOrEmpty(passwordRepeat))
-        {
+            string.IsNullOrEmpty(passwordRepeat)) 
             return "Please fill in all fields";
-        }
         
         if (!new EmailAddressAttribute().IsValid(email)) return "Email is not valid";
         
-        var reader = Conn.GetReader($"SELECT * FROM users WHERE email = @email", new MySqlParameter("@email", email));
-        while (reader.Read())
+        var emailReader = Conn.GetReader("SELECT * FROM users WHERE email = @email", new MySqlParameter("@email", email));
+        while (emailReader.Read())
         {
-            if (reader.GetString(reader.GetOrdinal("email")) != email) continue;
-            reader.Close();
+            if (emailReader.GetString(emailReader.GetOrdinal("email")) != email) continue;
+            emailReader.Close();
             return "There is already an account with this email";
         }
+        emailReader.Close();
         
-        var mySqlDataReader = Conn.GetReader($"SELECT * FROM users WHERE name = @name", new MySqlParameter("@name", name));
-        while (mySqlDataReader.Read())
+        var nameReader = Conn.GetReader("SELECT * FROM users WHERE name = @name", new MySqlParameter("@name", name));
+        while (nameReader.Read())
         {
-            if (!new EmailAddressAttribute().IsValid(email))
-            {
-                return "Email is not valid";
-            }
-
-            if (mySqlDataReader.GetString(mySqlDataReader.GetOrdinal("name")) != name) continue;
-            mySqlDataReader.Close();
+            if (nameReader.GetString(nameReader.GetOrdinal("name")) != name) continue;
+            nameReader.Close();
             return "There is already an account with this name";
         }
         
         if (password != passwordRepeat)
         {
-            mySqlDataReader.Close();
+            nameReader.Close();
             return "Passwords do not match";
         }
         
         var hashedPassword = Password.Hash(password);
-        mySqlDataReader = Conn.GetReader("INSERT INTO users (name, email, password) VALUES (@name, @email, @password)", 
+        nameReader = Conn.GetReader("INSERT INTO users (name, email, password) VALUES (@name, @email, @password)", 
             new MySqlParameter("@name", name), 
             new MySqlParameter("@email", email), 
             new MySqlParameter("@password", hashedPassword));
-        mySqlDataReader.Close();
+        nameReader.Close();
         
         Login(email, password);
         return "User registered successfully";
