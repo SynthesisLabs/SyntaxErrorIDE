@@ -48,7 +48,7 @@ public class LoginService
             return "Please fill in all fields";
         }
         
-        if (new EmailAddressAttribute().IsValid(email)) return "Email is not valid";
+        if (!new EmailAddressAttribute().IsValid(email)) return "Email is not valid";
         
         var reader = Conn.GetReader($"SELECT * FROM users WHERE email = @email", new MySqlParameter("@email", email));
         while (reader.Read())

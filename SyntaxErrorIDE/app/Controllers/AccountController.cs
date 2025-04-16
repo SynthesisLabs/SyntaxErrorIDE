@@ -34,7 +34,7 @@ public class AccountController : Controller
     }
 
     [HttpPost]
-    public IActionResult Register([FromForm] string email, [FromForm] string name, [FromForm] string password, [FromForm] string passwordRepeat)
+    public IActionResult Register([FromForm] string name, [FromForm] string email, [FromForm] string password, [FromForm] string passwordRepeat)
     {
         var result = _loginService.Register(name, email, password, passwordRepeat);
 
