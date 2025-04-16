@@ -25,7 +25,7 @@ public class AccountController : Controller
         }
         
         TempData["Message"] = "Login failed";
-        return View("login");
+        return RedirectToPage("/Login");
     }
 
     [HttpGet]
