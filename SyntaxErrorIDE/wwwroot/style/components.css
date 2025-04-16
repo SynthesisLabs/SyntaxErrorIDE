@@ -30,7 +30,7 @@ header
 
 header a
 {
-    color: #62606B;
+    color: white;
 }
 
 .welcome
@@ -42,4 +42,19 @@ header a
 .welcome a
 {
     color: #7F7B82;
+}
+
+nav
+{
+    margin-left: 5vw;
+}
+
+ul
+{
+    list-style: none;
+}
+
+nav ul li
+{
+    margin-right: 1vw;
 }
