@@ -13,5 +13,33 @@ a{
 
 footer
 {
-    /*background: #172121;*/
+    background: #172121;
+    color: #E5D0CC;
+}
+
+footer a
+{
+    color: #62606B;
+}
+
+header
+{
+    background: #172121;
+    color: #E5D0CC;
+}
+
+header a
+{
+    color: #62606B;
+}
+
+.welcome
+{
+    background: #444554;
+    color: #BFACB5;
+}
+
+.welcome a
+{
+    color: #7F7B82;
 }
