@@ -18,34 +18,27 @@
 <body>
     @await Html.PartialAsync("~/Pages/views/header.cshtml")
     <div class="flex flex-row">
-        <div class="w-[70%] h-[100vh] bg-[#000000] text-[white]">
+        <div class="w-[70%] h-[100vh] bg-[#172121] text-[white]">
             <h1 class="text-5xl font-bold">Welcome Back!</h1>
         </div>
 
-        <div class="w-[30%] h-[100vh] bg-[white] flex items-center">
+        <div class="w-[30%] h-[100vh] bg-[#444554] flex items-center">
             <form method="post" action="/account/login" class="w-full max-w-sm space-y-6">
                 <h2 class="text-2xl font-semibold text-gray-800">Login to Your Account</h2>
                 <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700">Username</label>
-                    <input type="text" id="name" name="name"
-                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                           required>
+                    <label for="name">Username</label>
+                    <input type="text" id="name" name="name" required>
                 </div>
                 <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                    <input type="password" id="password" name="password"
-                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                           required>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
                 </div>
-                <button type="submit"
-                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Login
-                </button>
+                <button type="submit">Login</button>
             </form>
         </div>
     </div>
     @if (TempData["Message"] != null)
-    { 
+    {
         @TempData["Message"]
     }
     @await Html.PartialAsync("~/Pages/views/footer.cshtml")
