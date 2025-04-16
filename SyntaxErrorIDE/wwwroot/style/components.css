@@ -11,20 +11,7 @@ a{
     text-decoration: none;
 }
 
-/*header*/
-header {
-    height: 5vh;
-    width: 100%;
-}
-
-/*main*/
-main {
-    min-height: 90vh;
-    width: 100%;
-}
-
-/*footer*/
-footer {
-    height: 5vh;
-    width: 100%;
+footer
+{
+    /*background: #172121;*/
 }

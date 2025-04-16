@@ -11,12 +11,12 @@
 </head>
 <body>
 @await Html.PartialAsync("~/Pages/views/header.cshtml")
-<main class="welcome">
+<main class="welcome w-[100vw] h-[92vh] flex flex-col justify-center items-center">
     <div class="container">
         <h1>Welcome to SyntaxError IDE</h1>
         <p>Your go-to solution for all your coding needs.</p>
         <p>Explore our features and start coding today!</p>
-        <a href="#">Start Coding</a>
+        <a href="login">Start Coding</a>
     </div>
 </main>
 @await Html.PartialAsync("~/Pages/views/footer.cshtml")

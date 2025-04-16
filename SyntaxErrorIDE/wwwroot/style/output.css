@@ -120,9 +120,6 @@
 .mb-auto {
   margin-bottom: auto;
 }
-.\!hidden {
-  display: none !important;
-}
 .block {
   display: block;
 }
@@ -159,11 +156,41 @@
 .table-row {
   display: table-row;
 }
+.h-\[3vh\] {
+  height: 3vh;
+}
+.h-\[5vh\] {
+  height: 5vh;
+}
+.h-\[7vh\] {
+  height: 7vh;
+}
+.h-\[90vh\] {
+  height: 90vh;
+}
+.h-\[92vh\] {
+  height: 92vh;
+}
+.h-\[100vh\] {
+  height: 100vh;
+}
 .h-auto {
   height: auto;
 }
+.w-\[30\%\] {
+  width: 30%;
+}
+.w-\[70\%\] {
+  width: 70%;
+}
+.w-\[100vw\] {
+  width: 100vw;
+}
 .w-auto {
   width: auto;
+}
+.w-full {
+  width: 100%;
 }
 .flex-shrink {
   flex-shrink: 1;
@@ -270,6 +297,12 @@
   border-style: var(--tw-border-style);
   border-width: 5px;
 }
+.bg-\[\#000000\] {
+  background-color: #000000;
+}
+.bg-\[white\] {
+  background-color: white;
+}
 .bg-transparent {
   background-color: transparent;
 }
@@ -305,6 +338,9 @@
 }
 .text-wrap {
   text-wrap: wrap;
+}
+.text-\[white\] {
+  color: white;
 }
 .capitalize {
   text-transform: capitalize;
@@ -351,9 +387,6 @@
   --tw-invert: invert(100%);
   filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
 }
-.\!filter {
-  filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,) !important;
-}
 .filter {
   filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
 }
@@ -377,6 +410,35 @@
 }
 .flex-column {
   flex-direction: column;
+}
+.editor-container {
+  display: flex;
+  font-family: monospace;
+  font-size: 14px;
+  height: 300px;
+  margin: 20px 0;
+  border: 1px solid #ccc;
+}
+.line-numbers {
+  width: 10px;
+  background-color: #f0f0f0;
+  text-align: right;
+  padding: 5px;
+  overflow-y: hidden;
+  user-select: none;
+  line-height: 1.5rem;
+  white-space: pre;
+}
+.editor-textarea {
+  flex: 1;
+  padding: 5px;
+  resize: none;
+  border: none;
+  outline: none;
+  overflow-x: scroll;
+  line-height: 1.5rem;
+  white-space: pre;
+  word-wrap: normal;
 }
 @property --tw-rotate-x {
   syntax: "*";
