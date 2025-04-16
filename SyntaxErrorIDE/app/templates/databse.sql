@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `users`
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `name` VARCHAR(50) NOT NULL,
     `email` VARCHAR(255) NOT NULL UNIQUE,
-    `password` VARCHAR(255) NOT NULL, -- make sure to save the hash and not the unhashed password
+    `password` VARCHAR(255) NOT NULL,
     `creation_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

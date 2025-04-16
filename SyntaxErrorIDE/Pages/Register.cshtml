@@ -31,6 +31,12 @@
     <p>already have an account? <a href="/login">Login</a></p>
     <button type="submit" class="btn btn-primary">Register</button>
 </form>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["Message"]
+    </div>
+}
 @await Html.PartialAsync("~/Pages/views/footer.cshtml")
 </body>
 </html>
