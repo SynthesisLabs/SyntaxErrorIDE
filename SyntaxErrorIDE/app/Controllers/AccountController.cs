@@ -20,10 +20,11 @@ public class AccountController : Controller
 
         if (successLogin)
         {
+            TempData["Message"] = "Login successful";
             return Redirect("/");
         }
         
-        ViewBag.Message = "Login failed";
+        TempData["Message"] = "Login failed";
         return View("login");
     }
 

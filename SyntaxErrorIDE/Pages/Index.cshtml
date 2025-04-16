@@ -18,6 +18,10 @@
         <p>Explore our features and start coding today!</p>
         <a href="login">Start Coding</a>
     </div>
+    @if (TempData["Message"] != null)
+    { 
+        @TempData["Message"]
+    }
 </main>
 @await Html.PartialAsync("~/Pages/views/footer.cshtml")
 </body>
