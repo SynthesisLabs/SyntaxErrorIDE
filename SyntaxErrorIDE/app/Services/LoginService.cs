@@ -15,28 +15,26 @@ public class LoginService
     }
     public bool Login(string name, string password)
     {
-        var users = User.GetAllUsers();
-        foreach (var user in users)
+        var reader = Conn.GetReader("SELECT id, password FROM users WHERE name = @name", new MySqlParameter("@name", name));
+
+        while (reader.Read())
         {
-            if (user.name != name) continue;
-            var reader = Conn.GetReader("SELECT * FROM users WHERE name = @name", new MySqlParameter("@name", name));
-            while (reader.Read())
-            {
-                var savedPasswordHash = reader.GetString(reader.GetOrdinal("password"));
-                if (!Password.Verify(password, savedPasswordHash)) continue;
-                
-                var userId = reader.GetInt32(reader.GetOrdinal("id"));
-                _httpContextAccessor.HttpContext?.Session.SetInt32("UserId", userId);
-                _httpContextAccessor.HttpContext?.Session.SetString("UserName", name);
-                _httpContextAccessor.HttpContext?.Session.SetString("is_logged", "true");
-                
-                reader.Close();
-                return true;
-            }
+            var savedPasswordHash = reader.GetString(reader.GetOrdinal("password"));
+            if (!Password.Verify(password, savedPasswordHash)) continue;
+
+            var userId = reader.GetInt32(reader.GetOrdinal("id"));
+            _httpContextAccessor.HttpContext?.Session.SetInt32("UserId", userId);
+            _httpContextAccessor.HttpContext?.Session.SetString("UserName", name);
+            _httpContextAccessor.HttpContext?.Session.SetString("is_logged", "true");
+
+            reader.Close();
+            return true;
         }
 
+        reader.Close();
         return false;
     }
+
     
     public string Register(string? name,string? email, string? password, string? passwordRepeat)
     {
