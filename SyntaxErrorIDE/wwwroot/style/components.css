@@ -26,6 +26,10 @@ header
 {
     background: #172121;
     color: #E5D0CC;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    font-size: larger;
 }
 
 header a
