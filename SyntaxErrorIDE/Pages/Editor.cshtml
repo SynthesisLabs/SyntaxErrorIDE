@@ -12,35 +12,37 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
+<main>
+    <div class="p-[10px] bg-[#f5f5f5] border border-[#ddd] mb-[10px]">
+        <div id="file-explorer" class="mb-[10px] max-h-[200px] overflow-y-auto">
+        </div>
 
-<div class="p-[10px] bg-[#f5f5f5] border border-[#ddd] mb-[10px]">
-    <div id="file-explorer" class="mb-[10px] max-h-[200px] overflow-y-auto">
-        <!-- Bestand lijst -->
+        <button id="save-btn" class="mr-[10px] px-[10px] py-[5px] text-white border-none cursor-pointer">
+            Opslaan
+        </button>
+
+        <input type="text" id="new-filename" placeholder="Nieuw bestandsnaam"
+               class="px-[5px] mr-[10px] w-[200px]" />
+
+        <button id="create-btn" class="mr-[10px] px-[10px] py-[5px] text-white border-none cursor-pointer">
+            Nieuw bestand
+        </button>
+    </div>
+    <div class="flex flex-row">
+        <div class="filemap w-[20%]"></div>
+        <div class="flex font-mono text-[14px] h-[80vh] my-[20px] border border-[#ccc] w-[100%]">
+            <div id="line-numbers"
+                 class="w-[30px] bg-[#f0f0f0] text-right p-[5px] pb-[20px] overflow-y-hidden select-none leading-[1.5rem] whitespace-pre">
+                1
+            </div>
+            <textarea id="code-editor" spellcheck="false"
+                      class="flex-1 p-[5px] resize-none border-none outline-none overflow-x-scroll leading-[1.5rem] whitespace-pre break-words">
+            </textarea>
+        </div>
     </div>
 
-    <button id="save-btn" class="mr-[10px] px-[10px] py-[5px] text-white border-none cursor-pointer">
-        Opslaan
-    </button>
-
-    <input type="text" id="new-filename" placeholder="Nieuw bestandsnaam"
-           class="px-[5px] mr-[10px] w-[200px]" />
-
-    <button id="create-btn" class="mr-[10px] px-[10px] py-[5px] text-white border-none cursor-pointer">
-        Nieuw bestand
-    </button>
-</div>
-
-<div class="flex font-mono text-[14px] h-[80vh] my-[20px] border border-[#ccc]">
-    <div id="line-numbers"
-         class="w-[30px] bg-[#f0f0f0] text-right px-[5px] pb-[20px] overflow-y-hidden select-none leading-[1.5rem] whitespace-pre">
-        1
-    </div>
-    <textarea id="code-editor" spellcheck="false"
-              class="flex-1 p-[5px] resize-none border-none outline-none overflow-x-scroll leading-[1.5rem] whitespace-pre break-words">
-    </textarea>
-</div>
-
+</main>
 <script src="js/editor/lineNumbers.js"></script>
-<script src="js/editor/File.js"></script>
+<script src="js/editor/repo.js"></script>
 </body>
 </html>
