@@ -1,6 +1,5 @@
 ﻿@page
 @model SyntaxErrorIDE.Pages.Editor
-
 @{
     Layout = null;
 }
@@ -8,79 +7,114 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Syntax Error IDE</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
         .file-manager {
-            padding: 10px;
-            background-color: #f5f5f5;
-            border: 1px solid #ddd;
-            margin-bottom: 10px;
+            padding: 15px;
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         #file-explorer {
-            margin-bottom: 10px;
-            max-height: 200px;
+            margin: 15px 0;
+            max-height: 300px;
             overflow-y: auto;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            background-color: #ffffff;
         }
 
-        #file-explorer div:hover {
-            background-color: #e0e0e0;
+        .input-group {
+            display: flex;
+            margin-bottom: 10px;
         }
 
-        .file-manager button {
-            margin-right: 10px;
-            padding: 5px 10px;
+        #github-url {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #007bff;
             color: white;
             border: none;
+            border-radius: 4px;
             cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
         }
 
-        #new-filename {
-            padding: 5px;
-            margin-right: 10px;
-            width: 200px;
+        button:hover {
+            background-color: #0069d9;
         }
-        
+
         .editor-container {
             display: flex;
-            font-family: monospace;
+            font-family: 'Consolas', 'Courier New', monospace;
             font-size: 14px;
-            height: 80vh;
-            margin: 20px 0;
-            border: 1px solid #ccc;
+            height: 70vh;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .line-numbers {
-            width: 30px;
-            background-color: #f0f0f0;
+            width: 40px;
+            background-color: #f8f9fa;
             text-align: right;
-            padding: 5px 5px 20px 5px;
+            padding: 10px;
             overflow-y: hidden;
             user-select: none;
-            line-height: 1.5rem;
-            white-space: pre;
+            line-height: 1.5;
+            color: #6c757d;
+            border-right: 1px solid #dee2e6;
         }
 
-        .editor-textarea {
+        #code-editor {
             flex: 1;
-            padding: 5px;
-            resize: none;
+            padding: 10px;
             border: none;
             outline: none;
-            overflow-x: scroll;
-            line-height: 1.5rem;
+            resize: none;
+            line-height: 1.5;
             white-space: pre;
-            word-wrap: normal;
+            tab-size: 4;
         }
-        
+
+        .status-bar {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #495057;
+        }
     </style>
 </head>
 <body>
 <div class="file-manager">
-    <p id="file-explorer"></p>
-    <button id="save-btn">Opslaan</button>
-    <input type="text" id="new-filename" placeholder="Nieuw bestandsnaam">
-    <button id="create-btn">Nieuw bestand</button>
+    <div class="input-group">
+        <input type="text" id="github-url" placeholder="GitHub repo URL (https://github.com/gebruiker/repo)" />
+        <button id="load-repo-btn">Laad Repository</button>
+    </div>
+    <div id="file-explorer"></div>
 </div>
 
 <div class="editor-container">
@@ -88,7 +122,73 @@
     <textarea class="editor-textarea" id="code-editor" spellcheck="false"></textarea>
 </div>
 
-<script src="js/editor/lineNumbers.js"> </script>
-<script src="js/editor/File.js"> </script>
+<div class="status-bar" id="status-bar">Klaar</div>
+
+<script src="js/editor/lineNumbers.js"></script>
+<script>
+    document.getElementById("load-repo-btn").addEventListener("click", async () => {
+        const url = document.getElementById("github-url").value.trim();
+        if (!url) {
+            updateStatus("Voer een GitHub URL in");
+            return;
+        }
+
+        updateStatus("Repository laden...");
+
+        try {
+            const response = await fetch("/Editor/DownloadRepo", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ githubUrl: url })
+            });
+
+            if (response.ok) {
+                const files = await response.json();
+                showFilesInExplorer(files);
+                updateStatus(`Repository geladen: ${files.length} bestanden`);
+            } else {
+                const error = await response.text();
+                updateStatus(`Fout: ${error}`, true);
+            }
+        } catch (error) {
+            updateStatus(`Netwerkfout: ${error.message}`, true);
+        }
+    });
+
+    function showFilesInExplorer(files) {
+        const explorer = document.getElementById("file-explorer");
+        explorer.innerHTML = "";
+
+        files.forEach(file => {
+            const div = document.createElement("div");
+            div.className = "file-item";
+            div.textContent = file;
+            div.onclick = async () => {
+                try {
+                    updateStatus(`Bestand laden: ${file}`);
+                    const res = await fetch(`/Editor/GetFileContent?file=${encodeURIComponent(file)}`);
+                    if (res.ok) {
+                        document.getElementById("code-editor").value = await res.text();
+                        updateLineNumbers();
+                        updateStatus(`Geladen: ${file}`);
+                    } else {
+                        updateStatus(`Fout bij laden bestand: ${file}`, true);
+                    }
+                } catch (error) {
+                    updateStatus(`Fout: ${error.message}`, true);
+                }
+            };
+            explorer.appendChild(div);
+        });
+    }
+
+    function updateStatus(message, isError = false) {
+        const statusBar = document.getElementById("status-bar");
+        statusBar.textContent = message;
+        statusBar.style.color = isError ? "#dc3545" : "#495057";
+    }
+</script>
 </body>
 </html>
