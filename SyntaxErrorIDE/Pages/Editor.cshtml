@@ -10,121 +10,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Syntax Error IDE</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f8f9fa;
-        }
-
-        .file-manager {
-            padding: 15px;
-            background-color: #ffffff;
-            border: 1px solid #dee2e6;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        #file-explorer {
-            margin: 15px 0;
-            max-height: 300px;
-            overflow-y: auto;
-            border: 1px solid #dee2e6;
-            border-radius: 5px;
-            background-color: #ffffff;
-        }
-
-        .input-group {
-            display: flex;
-            margin-bottom: 10px;
-        }
-
-        #github-url {
-            flex: 1;
-            padding: 8px 12px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        button {
-            padding: 8px 16px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            margin-left: 10px;
-        }
-
-        button:hover {
-            background-color: #0069d9;
-        }
-
-        .editor-container {
-            display: flex;
-            font-family: 'Consolas', 'Courier New', monospace;
-            font-size: 14px;
-            height: 70vh;
-            border: 1px solid #dee2e6;
-            border-radius: 5px;
-            background-color: #ffffff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .line-numbers {
-            width: 40px;
-            background-color: #f8f9fa;
-            text-align: right;
-            padding: 10px;
-            overflow-y: hidden;
-            user-select: none;
-            line-height: 1.5;
-            color: #6c757d;
-            border-right: 1px solid #dee2e6;
-        }
-
-        #code-editor {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            outline: none;
-            resize: none;
-            line-height: 1.5;
-            white-space: pre;
-            tab-size: 4;
-        }
-
-        .status-bar {
-            margin-top: 10px;
-            padding: 5px 10px;
-            background-color: #e9ecef;
-            border-radius: 4px;
-            font-size: 12px;
-            color: #495057;
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<div class="file-manager">
-    <div class="input-group">
-        <input type="text" id="github-url" placeholder="GitHub repo URL (https://github.com/gebruiker/repo)" />
-        <button id="load-repo-btn">Laad Repository</button>
+<body class="bg-gray-100 p-5 font-sans">
+<div class="bg-white shadow-md rounded-lg mb-5 p-4 border border-gray-200">
+    <div class="flex mb-4">
+        <input type="text" id="github-url" placeholder="GitHub repo URL (https://github.com/gebruiker/repo)" class="flex-grow p-2 border border-gray-300 rounded-md text-sm" />
+        <button id="load-repo-btn" class="ml-3 px-4 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700 transition-colors">Laad Repository</button>
     </div>
-    <div id="file-explorer"></div>
+    <div id="file-explorer" class="max-h-72 overflow-y-auto border border-gray-200 rounded-md bg-gray-50 p-2"></div>
 </div>
 
-<div class="editor-container">
-    <div class="line-numbers" id="line-numbers">1</div>
-    <textarea class="editor-textarea" id="code-editor" spellcheck="false"></textarea>
+<div class="flex bg-white shadow-md rounded-lg border border-gray-200 mb-5 h-[70vh]">
+    <div class="w-16 bg-gray-100 text-gray-500 text-right p-2 border-r border-gray-200 leading-6 select-none" id="line-numbers">1</div>
+    <textarea id="code-editor" spellcheck="false" class="flex-grow p-4 border-none outline-none resize-none leading-6 text-sm font-mono"></textarea>
 </div>
 
-<div class="status-bar" id="status-bar">Klaar</div>
+<div id="status-bar" class="bg-gray-200 text-gray-600 text-xs p-2 rounded-md">Klaar</div>
 
 <script src="js/editor/lineNumbers.js"></script>
-<script>src="js/editor/repo.js"</script>
+<script>
+    document.getElementById("load-repo-btn").addEventListener("click", async () => {
+        const url = document.getElementById("github-url").value.trim();
+        if (!url) {
+            updateStatus("Voer een GitHub URL in");
+            return;
+        }
+
+        updateStatus("Repository laden...");
+
+        try {
+            const response = await fetch("/Editor/DownloadRepo", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ githubUrl: url })
+            });
+
+            if (response.ok) {
+                const files = await response.json();
+                showFilesInExplorer(files);
+                updateStatus(`Repository geladen: ${files.length} bestanden`);
+            } else {
+                const error = await response.text();
+                updateStatus(`Fout: ${error}`, true);
+            }
+        } catch (error) {
+            updateStatus(`Netwerkfout: ${error.message}`, true);
+        }
+    });
+
+    function showFilesInExplorer(files) {
+        const explorer = document.getElementById("file-explorer");
+        explorer.innerHTML = "";
+        files.forEach(file => {
+            const div = document.createElement("div");
+            div.className = "p-2 bg-white rounded-md mb-2 shadow-sm border border-gray-200 cursor-pointer hover:bg-gray-100";
+            div.textContent = file;
+            div.onclick = async () => {
+                try {
+                    updateStatus(`Bestand laden: ${file}`);
+                    const res = await fetch(`/Editor/GetFileContent?file=${encodeURIComponent(file)}`);
+                    if (res.ok) {
+                        document.getElementById("code-editor").value = await res.text();
+                        updateLineNumbers();
+                        updateStatus(`Geladen: ${file}`);
+                    } else {
+                        updateStatus(`Fout bij laden bestand: ${file}`, true);
+                    }
+                } catch (error) {
+                    updateStatus(`Fout: ${error.message}`, true);
+                }
+            };
+            explorer.appendChild(div);
+        });
+    }
+
+    function updateStatus(message, isError = false) {
+        const statusBar = document.getElementById("status-bar");
+        statusBar.textContent = message;
+        statusBar.classList.toggle("text-red-600", isError);
+        statusBar.classList.toggle("text-gray-600", !isError);
+    }
+</script>
 </body>
 </html>
