@@ -21,7 +21,7 @@ public class AccountController : Controller
         if (successLogin)
         {
             TempData["Message"] = "Login successful";
-            return Redirect("/");
+            return Redirect("/Editor");
         }
         
         TempData["Message"] = "Login failed";
@@ -41,7 +41,7 @@ public class AccountController : Controller
 
         if (result == "User registered successfully")
         {
-            return Redirect("/");
+            return Redirect("/Editor");
         }
 
         TempData["Message"] = result;
