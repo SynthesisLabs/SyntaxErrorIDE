@@ -18,31 +18,20 @@ public class GithubController : ControllerBase
     [HttpPost("DownloadRepo")]
     public async Task<IActionResult> DownloadRepo([FromBody] GitHubRequest request)
     {
-        if (string.IsNullOrWhiteSpace(request.GithubUrl))
-        {
+        if (string.IsNullOrWhiteSpace(request.GithubUrl)) 
             return BadRequest("GitHub URL is vereist");
-        }
 
         try
         {
             var (user, repo) = ExtractRepoInfo(request.GithubUrl);
-            if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(repo))
-            {
+            if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(repo)) 
                 return BadRequest("Ongeldige GitHub URL");
-            }
 
             string repoPath = Path.Combine(_rootPath, user, repo);
-
-            // Verwijder bestaande repo als die bestaat
-            if (Directory.Exists(repoPath))
-            {
-                Directory.Delete(repoPath, true);
-            }
-
-            // Download de repository
+            
+            if (Directory.Exists(repoPath)) Directory.Delete(repoPath, true);
             await CloneGitHubRepository(request.GithubUrl, repoPath);
             
-            // Verzamel alle bestanden
             var files = Directory.GetFiles(repoPath, "*", SearchOption.AllDirectories)
                 .Where(f => !f.Contains(Path.DirectorySeparatorChar + ".git" + Path.DirectorySeparatorChar))
                 .Select(f => Path.GetRelativePath(repoPath, f))
@@ -59,18 +48,13 @@ public class GithubController : ControllerBase
     [HttpGet("GetFileContent")]
     public IActionResult GetFileContent(string file)
     {
-        if (string.IsNullOrWhiteSpace(file))
-        {
+        if (string.IsNullOrWhiteSpace(file)) 
             return BadRequest("Bestandsnaam is vereist");
-        }
 
         try
         {
             var fullPath = Path.Combine(_rootPath, file);
-            if (!System.IO.File.Exists(fullPath))
-            {
-                return NotFound("Bestand niet gevonden");
-            }
+            if (!System.IO.File.Exists(fullPath)) return NotFound("Bestand niet gevonden");
 
             var content = System.IO.File.ReadAllText(fullPath);
             return Content(content);
@@ -87,10 +71,7 @@ public class GithubController : ControllerBase
         {
             var uri = new Uri(githubUrl);
             var segments = uri.Segments;
-            if (segments.Length < 3)
-            {
-                return (null, null);
-            }
+            if (segments.Length < 3) return (null, null);
 
             var user = segments[1].Trim('/');
             var repo = segments[2].Trim('/');
@@ -104,8 +85,6 @@ public class GithubController : ControllerBase
 
     private static async Task CloneGitHubRepository(string githubUrl, string targetPath)
     {
-        // Gebruik libgit2sharp of git CLI om repository te clonen
-        // Voorbeeld met git CLI (zorg dat git in PATH staat)
         var processInfo = new System.Diagnostics.ProcessStartInfo
         {
             FileName = "git",
@@ -121,7 +100,6 @@ public class GithubController : ControllerBase
             process.StartInfo = processInfo;
             process.Start();
             
-            // Wacht asynchroon tot het proces klaar is
             await Task.Run(() => process.WaitForExit());
             
             if (process.ExitCode != 0)
