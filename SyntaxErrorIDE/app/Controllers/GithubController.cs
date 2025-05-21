@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -28,88 +29,94 @@ namespace SyntaxErrorIDE.Controllers
             try
             {
                 var client = _clientFactory.CreateClient("GitHub");
-
-                // Voeg accept header toe voor GitHub API v3
-                client.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
-
-                var encodedPath = Uri.EscapeDataString(path);
-                var requestUrl = $"repos/{owner}/{repo}/contents/{encodedPath}";
-
-                Console.WriteLine($"Requesting GitHub URL: {requestUrl}");
-
+        
+                // Debug output
+                Console.WriteLine($"Requesting contents for: {owner}/{repo}/{path}");
+        
+                // GitHub API verwacht een lege string voor root, niet "/"
+                var apiPath = string.IsNullOrEmpty(path) ? "" : $"/{Uri.EscapeDataString(path)}";
+                var requestUrl = $"repos/{owner}/{repo}/contents{apiPath}";
+        
+                Console.WriteLine($"Final API URL: {requestUrl}");
+        
                 var response = await client.GetAsync(requestUrl);
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    var errorContent = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine($"GitHub API error: {response.StatusCode}, Details: {errorContent}");
-                    return StatusCode((int)response.StatusCode, errorContent);
-                }
-
-                var content = await response.Content.ReadAsStringAsync();
-                return Content(content, "application/json");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception: {ex}");
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
-        }
-
-        [HttpGet("file/{owner}/{repo}/{*path}")]
-        public async Task<IActionResult> GetFileContent(string owner, string repo, string path)
-        {
-            try
-            {
-                var client = _clientFactory.CreateClient("GitHub");
-                // URL encode het pad
-                var encodedPath = Uri.EscapeDataString(path);
-                var response = await client.GetAsync($"repos/{owner}/{repo}/contents/{encodedPath}");
         
                 if (!response.IsSuccessStatusCode)
                 {
                     var errorContent = await response.Content.ReadAsStringAsync();
-                    return StatusCode((int)response.StatusCode, new 
-                    { 
-                        error = "GitHub API error",
-                        status = response.StatusCode,
-                        message = errorContent
-                    });
+                    Console.WriteLine($"GitHub API error: {response.StatusCode}\n{errorContent}");
+                    return StatusCode((int)response.StatusCode, $"GitHub API error: {errorContent}");
                 }
-
-                var content = await response.Content.ReadAsStringAsync();
-                var fileInfo = JsonSerializer.Deserialize<GitHubFileInfo>(content);
-
-                if (fileInfo == null)
-                {
-                    return BadRequest(new { error = "Could not parse GitHub response" });
-                }
-
-                if (string.IsNullOrEmpty(fileInfo.Content))
-                {
-                    return BadRequest(new { error = "File content is empty" });
-                }
-                
-                byte[] data = Convert.FromBase64String(fileInfo.Content.Replace("\n", ""));
-                var decodedContent = Encoding.UTF8.GetString(data);
-
-                return Ok(new
-                {
-                    content = decodedContent,
-                    name = fileInfo.Name,
-                    path = fileInfo.Path,
-                    sha = fileInfo.Sha,
-                    encoding = "base64"
-                });
+        
+                return Content(await response.Content.ReadAsStringAsync(), "application/json");
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { 
-                    error = "Internal server error",
-                    message = ex.Message 
-                });
+                Console.WriteLine($"Exception: {ex}");
+                return StatusCode(500, $"Internal error: {ex.Message}");
             }
         }
+
+    [HttpGet("file/{owner}/{repo}/{*path}")]
+public async Task<IActionResult> GetFileContent(string owner, string repo, string path)
+{
+    try
+    {
+        var token = _configuration["GitHub:Token"];
+        var client = _clientFactory.CreateClient();
+        client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("MyApp", "1.0"));
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("token", token);
+
+
+        var segments = path.Split('/');
+        var encodedSegments = segments.Select(Uri.EscapeDataString);
+        var encodedPath = string.Join("/", encodedSegments);
+        
+        var apiUrl = $"https://api.github.com/repos/{owner}/{repo}/contents/{encodedPath}";
+        Console.WriteLine($"Fetching: {apiUrl}");
+
+        var response = await client.GetAsync(apiUrl);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var errorContent = await response.Content.ReadAsStringAsync();
+            return StatusCode((int)response.StatusCode, new
+            {
+                error = "GitHub API error",
+                status = response.StatusCode,
+                message = errorContent
+            });
+        }
+
+        var json = await response.Content.ReadAsStringAsync();
+        var fileInfo = JsonSerializer.Deserialize<GitHubFileInfo>(json);
+
+        if (fileInfo == null || string.IsNullOrEmpty(fileInfo.Content))
+        {
+            return BadRequest(new { error = "Ongeldige GitHub response of lege inhoud" });
+        }
+
+        byte[] data = Convert.FromBase64String(fileInfo.Content.Replace("\n", ""));
+        var decodedContent = Encoding.UTF8.GetString(data);
+
+        return Ok(new
+        {
+            content = decodedContent,
+            name = fileInfo.Name,
+            path = fileInfo.Path,
+            sha = fileInfo.Sha,
+            encoding = fileInfo.Encoding
+        });
+    }
+    catch (Exception ex)
+    {
+        return StatusCode(500, new
+        {
+            error = "Internal server error",
+            message = ex.Message
+        });
+    }
+}
 
         [HttpPost("save/{owner}/{repo}/{*path}")]
         public async Task<IActionResult> SaveFile(string owner, string repo, string path,
@@ -159,7 +166,7 @@ namespace SyntaxErrorIDE.Controllers
         public string Path { get; set; }
         public string Sha { get; set; }
         public string Content { get; set; }
-        public string Type { get; set; }
+        public string Encoding { get; set; }
     }
 
     public class GitHubSaveRequest

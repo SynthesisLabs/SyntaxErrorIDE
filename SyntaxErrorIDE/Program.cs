@@ -17,8 +17,8 @@ builder.Services.AddHttpClient("GitHub", client =>
     client.BaseAddress = new Uri("https://api.github.com/");
     client.DefaultRequestHeaders.Add("User-Agent", "SyntaxErrorIDE");
     client.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
-
-    var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
+    
+    var token = builder.Configuration["GitHub:Token"];
     if (!string.IsNullOrEmpty(token))
     {
         client.DefaultRequestHeaders.Authorization = 
