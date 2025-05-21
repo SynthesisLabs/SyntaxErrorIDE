@@ -18,9 +18,10 @@ footer
     color: #F1F2F6;
 }
 
-footer a
+footer p
 {
     color: #F8F4F9;
+    text-align: center;
 }
 
 header
@@ -40,11 +41,14 @@ header a
 
 .welcome
 {
-    background: #444554;
+    background: #39393A;
     color: #F1F2F6;
+    text-align: center;
+    height: 100vh;
 }
 
 .welcome a
 {
+    padding: 20px;
     color: #F1F2F6;
 }
