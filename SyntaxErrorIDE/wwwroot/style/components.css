@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: sans-serif;
 }
 
 html {
@@ -13,19 +14,19 @@ a{
 
 footer
 {
-    background: #172121;
-    color: #E5D0CC;
+    background: #121113;
+    color: #F1F2F6;
 }
 
 footer a
 {
-    color: #62606B;
+    color: #F8F4F9;
 }
 
 header
 {
-    background: #172121;
-    color: #E5D0CC;
+    background: #121113;
+    color: #F1F2F6;
     display: flex;
     justify-content: space-between;
     padding: 20px;
@@ -34,16 +35,16 @@ header
 
 header a
 {
-    color: #62606B;
+    color: #F1F2F6;
 }
 
 .welcome
 {
     background: #444554;
-    color: #BFACB5;
+    color: #F1F2F6;
 }
 
 .welcome a
 {
-    color: #7F7B82;
+    color: #F1F2F6;
 }
