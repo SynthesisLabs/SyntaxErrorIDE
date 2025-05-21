@@ -6,6 +6,5 @@ public class Editor : PageModel
 {
     public void OnGet()
     {
-        
     }
 }

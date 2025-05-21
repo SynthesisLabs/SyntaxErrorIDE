@@ -16,7 +16,6 @@ namespace SyntaxErrorIDE.Pages
         {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
             StatusCode = statusCode ?? 500;
-            
         }
     }
 }

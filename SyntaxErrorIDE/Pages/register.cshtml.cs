@@ -6,18 +6,14 @@ namespace SyntaxErrorIDE.Pages
 {
     public class RegisterModel : PageModel
     {
-        [BindProperty]
-        [Required]
-        public string Name { get; set; } = null!;
+        [BindProperty] [Required] public string Name { get; set; } = null!;
 
         [BindProperty]
         [Required]
         [EmailAddress]
         public string Email { get; set; } = null!;
 
-        [BindProperty]
-        [Required]
-        public string Password { get; set; } = null!;
+        [BindProperty] [Required] public string Password { get; set; } = null!;
 
         [BindProperty]
         [Required]

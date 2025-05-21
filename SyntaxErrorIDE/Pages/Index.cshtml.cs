@@ -15,7 +15,6 @@ namespace SyntaxErrorIDE.Pages
 
         public void OnGet()
         {
-
         }
     }
 }

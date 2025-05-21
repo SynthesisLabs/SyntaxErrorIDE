@@ -18,6 +18,7 @@ public class User
             email = reader.GetString(reader.GetOrdinal("email"));
             name = reader.GetString(reader.GetOrdinal("name"));
         }
+
         reader.Close();
     }
 
@@ -34,6 +35,7 @@ public class User
         {
             users.Add(new User(reader.GetInt32(reader.GetOrdinal("id"))));
         }
+
         reader.Close();
         return users;
     }

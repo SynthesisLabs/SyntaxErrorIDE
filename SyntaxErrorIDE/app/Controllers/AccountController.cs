@@ -12,7 +12,7 @@ public class AccountController : Controller
     {
         _loginService = loginService;
     }
-    
+
     [HttpPost]
     public IActionResult Login([FromForm] string name, [FromForm] string password)
     {
@@ -23,7 +23,7 @@ public class AccountController : Controller
             TempData["Message"] = "Login successful";
             return Redirect("/Editor");
         }
-        
+
         TempData["Message"] = "Login failed";
         return RedirectToPage("/Login");
     }
@@ -35,7 +35,8 @@ public class AccountController : Controller
     }
 
     [HttpPost]
-    public IActionResult Register([FromForm] string name, [FromForm] string email, [FromForm] string password, [FromForm] string passwordRepeat)
+    public IActionResult Register([FromForm] string name, [FromForm] string email, [FromForm] string password,
+        [FromForm] string passwordRepeat)
     {
         var result = _loginService.Register(name, email, password, passwordRepeat);
 
