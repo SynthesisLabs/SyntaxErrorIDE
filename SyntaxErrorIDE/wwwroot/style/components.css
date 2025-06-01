@@ -8,24 +8,22 @@ html {
     height: 100%;
     width: 100%;
 }
-a{
+
+a {
     text-decoration: none;
 }
 
-footer
-{
+footer {
     background: #121113;
     color: #F1F2F6;
 }
 
-footer p
-{
+footer p {
     color: #F8F4F9;
     text-align: center;
 }
 
-header
-{
+header {
     background: #121113;
     color: #F1F2F6;
     display: flex;
@@ -34,21 +32,18 @@ header
     font-size: larger;
 }
 
-header a
-{
+header a {
     color: #F1F2F6;
 }
 
-.welcome
-{
+.welcome {
     background: #39393A;
     color: #F1F2F6;
     text-align: center;
     height: 100vh;
 }
 
-.welcome a
-{
+.welcome a {
     padding: 20px;
     color: #F1F2F6;
 }
@@ -64,8 +59,22 @@ header a
     padding: 20px;
 }
 
+.login-item {
+    padding: 5px;
+}
+
+.login-input {
+    border: #F1F2F6 1px solid;
+    border-radius: 200px;
+    padding: 5px;
+}
+
 .login-container button {
-    font-size: x-large;
+    border-radius: 20px;
+    padding: 10px;
+    width: 300px;
+    font-size: large;
+    font-weight: bold;
 }
 
 .register {
@@ -77,4 +86,22 @@ header a
 
 .register-container {
     padding: 20px;
+}
+
+.register-item {
+    padding: 5px;
+}
+
+.register-input {
+    border: #F1F2F6 1px solid;
+    border-radius: 200px;
+    padding: 5px;
+}
+
+.register-container button {
+    border-radius: 20px;
+    padding: 10px;
+    width: 300px;
+    font-size: large;
+    font-weight: bold;
 }

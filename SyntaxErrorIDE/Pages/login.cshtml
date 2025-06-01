@@ -23,15 +23,15 @@
         </div>
 
         <div class="login-container">
-            <form method="post" action="/account/login" class="max-w-sm space-y-6 flex justify-center flex-column">
+            <form method="post" action="/account/login">
                 <h2>Login to Your Account</h2>
-                <div>
-                    <label for="name">Username</label>
-                    <input type="text" id="name" name="name" class="w-[80%]" required>
+                <div class="login-item">
+                    <label for="name">Username:</label>
+                    <input type="text" id="name" name="name" class="login-input" required>
                 </div>
-                <div>
-                    <label for="password">Password</label>
-                    <input type="password" id="password" class="w-[80%]" name="password" required>
+                <div class="login-item">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password"  name="password" class="login-input" required>
                 </div>
                 <button type="submit">Login</button>
             </form>
