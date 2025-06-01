@@ -17,14 +17,14 @@
 
 <body>
     @await Html.PartialAsync("~/Pages/views/header.cshtml")
-    <div class="flex flex-row">
-        <div class="w-[70%] h-[100vh] bg-[#172121] text-[white]">
-            <h1 class="text-5xl font-bold">Welcome Back!</h1>
+    <div class="login">
+        <div class="welcome-back">
+            <h1>Welcome Back!</h1>
         </div>
 
-        <div class="w-[30%] h-[100vh] bg-[#444554] flex items-center justify-center">
+        <div class="login-container">
             <form method="post" action="/account/login" class="max-w-sm space-y-6 flex justify-center flex-column">
-                <h2 class="text-2xl font-semibold text-gray-800">Login to Your Account</h2>
+                <h2>Login to Your Account</h2>
                 <div>
                     <label for="name">Username</label>
                     <input type="text" id="name" name="name" class="w-[80%]" required>

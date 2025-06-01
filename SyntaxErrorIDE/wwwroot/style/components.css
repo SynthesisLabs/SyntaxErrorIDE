@@ -52,3 +52,29 @@ header a
     padding: 20px;
     color: #F1F2F6;
 }
+
+.login {
+    background-color: #39393A;
+    color: #F1F2F6;
+    text-align: center;
+    height: 100vh;
+}
+
+.login-container {
+    padding: 20px;
+}
+
+.login-container button {
+    font-size: x-large;
+}
+
+.register {
+    background-color: #39393A;
+    color: #F1F2F6;
+    height: 100vh;
+    text-align: center;
+}
+
+.register-container {
+    padding: 20px;
+}
