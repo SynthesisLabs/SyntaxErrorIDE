@@ -45,6 +45,11 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+
 app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
 app.UseHttpsRedirection();
@@ -66,5 +71,6 @@ app.MapControllerRoute(
     pattern: "{controller=Account}/{action=register}/{name?}/{email?}/{password?}/{passwordRepeat?}");
 
 app.MapRazorPages();
+
 
 app.Run();  
