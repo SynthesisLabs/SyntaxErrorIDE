@@ -1,0 +1,10 @@
+{
+  "language": "c#",
+  "keywords": ["if", "else", "switch", "case", "default", "break", "continue", "goto", "return","while","for", "foreach", "do", "try", "catch", "finally", "throw", "using", "lock", "checked", "unchecked", "unsafe","await"],
+  "identifiers":  [
+  "operator", "params", "readonly", "ref", "return", "sizeof",
+  "stackalloc", "this", "throw", "typeof", "unchecked", "unsafe",
+  "using", "volatile","static","abstract","async","internal"
+],
+  "publicity-identifiers": ["public", "private", "protected", "internal"]
+}
