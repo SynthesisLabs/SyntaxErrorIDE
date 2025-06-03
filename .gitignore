@@ -274,3 +274,4 @@ __pycache__/
 # ignore enviroment variables
 .env
 /SyntaxErrorIDE/wwwroot/style/output.css
+/SyntaxErrorIDE/wwwroot/js/data.json
