@@ -1,107 +1,159 @@
 * {
-    padding: 0;
     margin: 0;
-    font-family: sans-serif;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-html {
+html, body {
     height: 100%;
     width: 100%;
+    background-color: #1e1e1e;
+    color: #f1f2f6;
 }
 
 a {
     text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
 }
 
-footer {
-    background: #121113;
-    color: #F1F2F6;
-}
-
-footer p {
-    color: #F8F4F9;
-    text-align: center;
+a:hover {
+    color: #a8dadc;
 }
 
 header {
-    background: #121113;
-    color: #F1F2F6;
+    background-color: #121113;
+    color: #f1f2f6;
     display: flex;
     justify-content: space-between;
-    padding: 20px;
-    font-size: larger;
+    align-items: center;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    overflow-x: auto; /* Enables horizontal scroll if needed */
+    flex-wrap: nowrap; /* Prevent wrapping */
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    flex-wrap: nowrap;
+}
+
+header nav ul li {
+    display: inline-block;
+    white-space: nowrap;
 }
 
 header a {
-    color: #F1F2F6;
+    color: #f1f2f6;
+    transition: color 0.3s ease;
+    font-weight: 500;
+    white-space: nowrap;
 }
 
-.welcome {
-    background: #39393A;
-    color: #F1F2F6;
+header a:hover {
+    color: #a8dadc;
+}
+
+
+footer {
+    background-color: #121113;
+    padding: 1rem 0;
     text-align: center;
-    height: 100vh;
+    font-size: 0.9rem;
+    border-top: 1px solid #2f2f2f;
+}
+
+footer p {
+    color: #dcdde1;
+}
+
+.welcome,
+.login,
+.register {
+    background-color: #2f2f30;
+    text-align: center;
+    min-height: 100vh;
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.welcome h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
 }
 
 .welcome a {
-    padding: 20px;
-    color: #F1F2F6;
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.75rem 2rem;
+    border: 2px solid #f1f2f6;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
-.login {
-    background-color: #39393A;
-    color: #F1F2F6;
-    text-align: center;
-    height: 100vh;
+.welcome a:hover {
+    background-color: #f1f2f6;
+    color: #121113;
 }
 
-.login-container {
-    padding: 20px;
-}
-
-.login-item {
-    padding: 5px;
-}
-
-.login-input {
-    border: #F1F2F6 1px solid;
-    border-radius: 200px;
-    padding: 5px;
-}
-
-.login-container button {
-    border-radius: 20px;
-    padding: 10px;
-    width: 300px;
-    font-size: large;
-    font-weight: bold;
-}
-
-.register {
-    background-color: #39393A;
-    color: #F1F2F6;
-    height: 100vh;
-    text-align: center;
-}
-
+.login-container,
 .register-container {
-    padding: 20px;
+    max-width: 400px;
+    margin: auto;
+    padding: 2rem;
+    background-color: #3e3e3f;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+.login-item,
 .register-item {
-    padding: 5px;
+    margin-bottom: 1rem;
+    text-align: left;
 }
 
+.login-input,
 .register-input {
-    border: #F1F2F6 1px solid;
-    border-radius: 200px;
-    padding: 5px;
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #f1f2f6;
+    border-radius: 30px;
+    background-color: #2b2b2c;
+    color: #f1f2f6;
+    font-size: 1rem;
 }
 
+.login-container button,
 .register-container button {
-    border-radius: 20px;
-    padding: 10px;
-    width: 300px;
-    font-size: large;
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 30px;
+    background-color: #f1f2f6;
+    color: #121113;
+    font-size: 1rem;
     font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-container button:hover,
+.register-container button:hover {
+    background-color: #dcdde1;
 }
