@@ -29,6 +29,15 @@
                     disabled>
                 Bestand opslaan
             </button>
+            <button onclick="SaveString()">Highlight</button>
+           <script>
+               function SaveString(){
+                   let code = document.getElementById("code-editor").value;
+                        let encodedCode = encodeURIComponent(code);
+                        window.location.href = `/Index?code=${encodedCode}`;
+               }
+           </script>
+           
         </div>
 
         <div class="flex flex-col md:flex-row">
