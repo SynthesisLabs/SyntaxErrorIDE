@@ -11,23 +11,37 @@ namespace SyntaxErrorIDE.Pages
         public static IWebHostEnvironment _env;
         Tokenizer tokenizer = new Tokenizer();
         public string HtmlContent { get; set; }
-        [BindProperty]
+        [BindProperty(SupportsGet =true)]
         public string code { get; set; }
 
+        public string Code = "";
         public IndexModel(IWebHostEnvironment env)
         {
             _env = env;
         }
         public void OnGet()
         {
-
-
+            if(Code == string.Empty)
+            {
+                Console.WriteLine("No code provided. Please enter some code to tokenize.");
+            }
+               
+            foreach(var item in Request.Query)
+            {
+                
+                if(item.Key == "code")
+                {
+                    Code = item.Value;
+                }
+            }
+            Console.WriteLine("Coding: " + Code);
+            tokenizer.runTokenizer(Code);
+            var result = GetKeywords();
+            HtmlContent = result.HtmlContent;
         }
         public void OnPost()
         {
-            tokenizer.runTokenizer(code);
-            var result = GetKeywords();
-            HtmlContent = result.HtmlContent;
+
         }
 
         private string GetJsonFile()
@@ -78,6 +92,9 @@ namespace SyntaxErrorIDE.Pages
                         case "PublicityIdentifiers":
                             Console.WriteLine("Publicity");
                             colorToUse = colors[2];
+                            break;
+                        case "NewLine":
+                            htmlBuilder.Append("<br>");
                             break;
                         default:
                             colorToUse = "ffff";
@@ -215,6 +232,7 @@ namespace SyntaxErrorIDE.Pages
         Boolean,
         NotSet,
         PublicityIdentifiers,
+        NewLine,
     }
     public class Tokenizer
     {
@@ -267,6 +285,9 @@ namespace SyntaxErrorIDE.Pages
                 }
                 switch (value)
                 {
+                    case var v when Regex.IsMatch(v, @"^\r?\n$"):
+                        type = TokenTypes.NewLine;
+                        break;
                     case var v when Regex.IsMatch(v, @"^[+\-*/=<>]$"):
                         type = TokenTypes.Operator;
                         break;
