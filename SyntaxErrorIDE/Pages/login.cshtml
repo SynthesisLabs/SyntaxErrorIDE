@@ -2,6 +2,7 @@
 @model SyntaxErrorIDE.Pages.LoginModel
 @{
     ViewData["Title"] = "login";
+    Layout = null;
 }
 @if (!string.IsNullOrEmpty(ViewBag.Message))
 {
@@ -12,7 +13,7 @@
 
 <head>
     @await Html.PartialAsync("~/Pages/views/head.cshtml")
-    <title>Home</title>
+    <title>Login</title>
 </head>
 
 <body>
@@ -31,7 +32,7 @@
                 </div>
                 <div class="login-item">
                     <label for="password">Password:</label>
-                    <input type="password" id="password"  name="password" class="login-input" required>
+                    <input type="password" id="password" name="password" class="login-input" required>
                 </div>
                 <button type="submit">Login</button>
             </form>
