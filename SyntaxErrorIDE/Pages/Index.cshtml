@@ -2,6 +2,7 @@
 @model SyntaxErrorIDE.Pages.IndexModel
 @{
     ViewData["Title"] = "Home page";
+    Layout = null;
 }
 <!doctype html>
 <html lang="en">
@@ -22,17 +23,7 @@
         @TempData["Message"]
     }
 
-
-        <div class="text-center">
-            <h1 class="display-4">Welcome</h1>
-            <form method="post">
-                <button>Tokenize</button>
-            </form>
-
-            <p id="text"></p>
-
-            @Html.Raw(Model.HtmlContent)
-        </div>
+        <h1 class="display-4">Welcome</h1>
 
 </main>
 @await Html.PartialAsync("~/Pages/views/footer.cshtml")
