@@ -6,74 +6,78 @@
 }
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <title>Syntax Error IDE</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body>
-<main class="container mx-auto px-4">
-    <h1 class="text-2xl font-bold my-4">Syntax Error IDE</h1>
+    <main class="container mx-auto px-4">
+        <h1 class="text-2xl font-bold my-4">Syntax Error IDE</h1>
 
-    <div class="p-3 bg-gray-100 border border-gray-300 rounded mb-3">
-        <div class="flex flex-col md:flex-row md:items-center mb-3">
-            <input type="text" id="github-url" placeholder="GitHub repo URL (bijv. gebruiker/repo)"
-                   class="px-2 py-1 mr-3 w-full md:w-64 border border-gray-300 rounded mb-2 md:mb-0"/>
+        <div class="p-3 bg-gray-100 border border-gray-300 rounded mb-3">
+            <div class="flex flex-col md:flex-row md:items-center mb-3">
+                <input type="text" id="github-url" placeholder="GitHub repo URL (bijv. gebruiker/repo)"
+                    class="px-2 py-1 mr-3 w-full md:w-64 border border-gray-300 rounded mb-2 md:mb-0" />
 
-            <button id="load-repo-btn"
+                <button id="load-repo-btn"
                     class="mr-3 px-3 py-1 bg-blue-600 text-white border-none rounded cursor-pointer mb-2 md:mb-0">
-                Repository laden
-            </button>
+                    Repository laden
+                </button>
 
-            <div class="flex-grow"></div>
+                <div class="flex-grow"></div>
 
-            <button id="save-file-btn" class="px-3 py-1 bg-green-600 text-white border-none rounded cursor-pointer"
+                <button id="save-file-btn" class="px-3 py-1 bg-green-600 text-white border-none rounded cursor-pointer"
                     disabled>
-                Bestand opslaan
-            </button>
-            <button class="ml-3"  onclick="SaveString()">Highlight</button>
-           <script>
-               function SaveString(){
-                   let code = document.getElementById("code-editor").value;
+                    Bestand opslaan
+                </button>
+                <button class="ml-3" onclick="SaveString()">Highlight</button>
+                <script>
+                    function SaveString() {
+                        let code = document.getElementById("code-editor").value;
                         let encodedCode = encodeURIComponent(code);
                         window.location.href = `/Highlight?code=${encodedCode}`;
-               }
-           </script>
-           
-        </div>
+                    }
+                </script>
 
-        <div class="flex flex-col md:flex-row">
-            <div id="repo-browser"
-                 class="w-full md:w-64 bg-white border border-gray-300 rounded mr-0 md:mr-3 mb-3 md:mb-0">
-                <div class="p-2 bg-gray-200 border-b border-gray-300 font-semibold">Repository Browser</div>
-                <div id="file-explorer" class="h-48 overflow-y-auto p-1">
-                    <div class="text-gray-500 text-center p-4">Geen repository geladen</div>
-                </div>
             </div>
 
-            <div id="path-navigator" class="flex-grow bg-white border border-gray-300 rounded">
-                <div class="p-2 bg-gray-200 border-b border-gray-300 font-semibold flex items-center">
-                    <span>Pad: </span>
-                    <div id="breadcrumb" class="ml-2 flex-grow overflow-x-auto whitespace-nowrap">
-                        <span class="text-gray-500">Geen bestand geselecteerd</span>
+            <div class="flex flex-col md:flex-row">
+                <div id="repo-browser"
+                    class="w-full md:w-64 bg-white border border-gray-300 rounded mr-0 md:mr-3 mb-3 md:mb-0">
+                    <div class="p-2 bg-gray-200 border-b border-gray-300 font-semibold">Repository Browser</div>
+                    <div id="file-explorer" class="h-48 overflow-y-auto p-1">
+                        <div class="text-gray-500 text-center p-4">Geen repository geladen</div>
+                    </div>
+                </div>
+
+                <div id="path-navigator" class="flex-grow bg-white border border-gray-300 rounded">
+                    <div class="p-2 bg-gray-200 border-b border-gray-300 font-semibold flex items-center">
+                        <span>Pad: </span>
+                        <div id="breadcrumb" class="ml-2 flex-grow overflow-x-auto whitespace-nowrap">
+                            <span class="text-gray-500">Geen bestand geselecteerd</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div id="status-bar" class="mt-2 p-2 text-sm text-gray-600 min-h-8 bg-gray-100 rounded"></div>
 
-    <div class="flex flex-row">
-        <div class="flex font-mono text-sm h-[65vh] border border-gray-300 w-full rounded">
-            <div id="line-numbers"
-                 class="w-10 bg-gray-100 text-right p-1 pb-5 overflow-y-hidden select-none leading-6 whitespace-pre">
-                1
+        <div id="status-bar" class="mt-2 p-2 text-sm text-gray-600 min-h-8 bg-gray-100 rounded"></div>
+
+        <div class="flex flex-row">
+            <div class="flex font-mono text-sm h-[65vh] border border-gray-300 w-full rounded">
+                <div id="line-numbers"
+                    class="w-10 bg-gray-100 text-right p-1 pb-5 overflow-y-hidden select-none leading-6 whitespace-pre">
+                    1
+                </div>
+                <textarea id="code-editor" spellcheck="false"
+                    class="flex-1 p-1 resize-none border-none outline-none overflow-auto leading-6 whitespace-pre break-words"></textarea>
             </div>
-            <textarea id="code-editor" spellcheck="false"class="flex-1 p-1 resize-none border-none outline-none overflow-auto leading-6 whitespace-pre break-words"></textarea>
         </div>
-    </div>
-</main>
+    </main>
 
-<script src="js/Editor/repo.js"></script>
+    <script src="js/Editor/repo.js"></script>
 </body>
+
 </html>
