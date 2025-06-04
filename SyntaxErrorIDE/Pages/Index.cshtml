@@ -6,26 +6,28 @@
 }
 <!doctype html>
 <html lang="en">
+
 <head>
     @await Html.PartialAsync("~/Pages/views/head.cshtml")
     <title>Home Page</title>
 </head>
+
 <body>
-@await Html.PartialAsync("~/Pages/views/header.cshtml")
-<main class="welcome">
-    <div class="container">
-        <h1>Code without limits</h1>
-        <h1>SyntaxError IDE</h1>
-        <a href="login">Start Coding</a>
-    </div>
-    @if (TempData["Message"] != null)
-    { 
-        @TempData["Message"]
-    }
+    @await Html.PartialAsync("~/Pages/views/header.cshtml")
+    <main class="welcome">
+        <div class="container">
+            <h1>Code without limits</h1>
+            <h1>SyntaxError IDE</h1>
+            <a href="login">Start Coding</a>
+        </div>
+        @if (TempData["Message"] != null)
+        {
+            @TempData["Message"]
+        }
+        <h1 class="display-4" style="margin-top: 3vh;">Welcome</h1>
 
-        <h1 class="display-4">Welcome</h1>
-
-</main>
-@await Html.PartialAsync("~/Pages/views/footer.cshtml")
+    </main>
+    @await Html.PartialAsync("~/Pages/views/footer.cshtml")
 </body>
+
 </html>
