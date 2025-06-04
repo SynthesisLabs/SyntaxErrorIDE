@@ -2,6 +2,7 @@
 @model SyntaxErrorIDE.Pages.Editor
 @{
     ViewData["Title"] = "Syntax Error IDE";
+    Layout = null;
 }
 <!DOCTYPE html>
 <html lang="nl">
@@ -29,12 +30,12 @@
                     disabled>
                 Bestand opslaan
             </button>
-            <button onclick="SaveString()">Highlight</button>
+            <button class="ml-3"  onclick="SaveString()">Highlight</button>
            <script>
                function SaveString(){
                    let code = document.getElementById("code-editor").value;
                         let encodedCode = encodeURIComponent(code);
-                        window.location.href = `/Index?code=${encodedCode}`;
+                        window.location.href = `/Highlight?code=${encodedCode}`;
                }
            </script>
            
