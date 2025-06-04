@@ -5,7 +5,8 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     width: 100%;
     background-color: #1e1e1e;
@@ -23,6 +24,7 @@ a:hover {
 }
 
 header {
+    height: 6vh;
     background-color: #121113;
     color: #f1f2f6;
     display: flex;
@@ -31,9 +33,6 @@ header {
     padding: 1rem 2rem;
     font-size: 1.1rem;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    white-space: nowrap;
-    overflow-x: auto; /* Enables horizontal scroll if needed */
-    flex-wrap: nowrap; /* Prevent wrapping */
 }
 
 header nav {
@@ -42,33 +41,21 @@ header nav {
     flex-shrink: 0;
 }
 
-header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-    margin: 0;
-    padding: 0;
-    flex-wrap: nowrap;
-}
-
-header nav ul li {
-    display: inline-block;
-    white-space: nowrap;
-}
-
 header a {
     color: #f1f2f6;
     transition: color 0.3s ease;
     font-weight: 500;
     white-space: nowrap;
+    margin-left: 1vh;
 }
 
 header a:hover {
     color: #a8dadc;
 }
 
-
 footer {
+    height: 6vh;
+    width: 100%;
     background-color: #121113;
     padding: 1rem 0;
     text-align: center;
@@ -85,7 +72,7 @@ footer p {
 .register {
     background-color: #2f2f30;
     text-align: center;
-    min-height: 100vh;
+    min-height: 88vh;
     padding: 4rem 2rem;
     display: flex;
     flex-direction: column;
