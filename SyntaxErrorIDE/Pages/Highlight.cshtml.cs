@@ -63,6 +63,7 @@ namespace SyntaxErrorIDE.Pages
 
         private (List<string> Keywords, string HtmlContent) GetKeywords()
         {
+
             var keywords = new List<string>();
             var htmlBuilder = new StringBuilder();
             List<string> colors = new List<string>()
@@ -77,6 +78,7 @@ namespace SyntaxErrorIDE.Pages
                 var codeDictionary = ParseJson();
                 foreach (var keyValuePair in codeDictionary)
                 {
+                    string output = "";
                     string baseKey = keyValuePair.Key.Split('_')[0];
                     Console.WriteLine("Basekey: " + baseKey);
                     switch (baseKey)
@@ -96,13 +98,22 @@ namespace SyntaxErrorIDE.Pages
                         case "NewLine":
                             htmlBuilder.Append("<br>");
                             break;
+                        case "WhiteSpace":
+                            output = keyValuePair.Value + " ";
+                            break;
                         default:
                             colorToUse = "ffff";
                             Console.WriteLine("No cases matched");
                             break;
                     }
-                    htmlBuilder.Append($"<p style=\"color:{colorToUse}\">{keyValuePair.Value}</p>");
+
+                    if (output == "")
+                    {
+                        output = keyValuePair.Value;
+                    }
+                    htmlBuilder.Append($"<span style=\"color:{colorToUse}\">{output}</span>");
                 }
+
 
 
             }
@@ -242,18 +253,19 @@ namespace SyntaxErrorIDE.Pages
         private static readonly List<string> PublicityIndentifiers = Tokens[2];
 
         private static readonly Regex TokenRegex = new Regex(
-            @"
-        (\b\d+\b)|              # Matches integers (BigInteger)
-        (\b(?:true|false)\b)|   # Matches Boolean values
-        (\bchar\b)|             # Matches 'char' keyword
-        (\b(?:get|set)\b)|      # Matches 'getter' and 'setter'
-        (\b(?:decimal|double|BigInteger)\b)|  # Matches specific data types
-        (\b\w+\b)|              # Matches identifiers/keywords
-        ([+\-*/=<>])|           # Matches operators
-        ([""'].*?[""'])|        # Matches strings
-        (//.*)|                 # Matches comments
-        (\s+)",
-            RegexOptions.Compiled | RegexOptions.IgnorePatternWhitespace);
+    @"
+    (\b\d+\b)|                      # Integers
+    (\b(?:true|false)\b)|           # Boolean
+    (\bchar\b)|                      # char keyword
+    (\b(?:get|set)\b)|               # get/set
+    (\b(?:decimal|double|BigInteger)\b)| # Data types
+    (\b\w+\b)|                       # Identifiers/keywords
+    ([+\-*/=<>])|                    # Operators
+    (""[^""]*""|'[^']*')|            # Strings
+    (//.*)|                          # Comments
+    (\r\n|\r|\n)|                    # Newlines
+    (\s+)",                          
+    RegexOptions.Compiled | RegexOptions.IgnorePatternWhitespace);
         public List<Token> Tokenize(string input)
         {
             var tokens = new List<Token>();
@@ -261,6 +273,7 @@ namespace SyntaxErrorIDE.Pages
 
             foreach (Match match in matches)
             {
+                Console.WriteLine(match);
                 string value = match.Value;
                 TokenTypes type = TokenTypes.Unknown;
                 if (Keywords.Contains(value))
@@ -285,8 +298,12 @@ namespace SyntaxErrorIDE.Pages
                 }
                 switch (value)
                 {
-                    case var v when Regex.IsMatch(v, @"^\r?\n$"):
+
+                    case var v when Regex.IsMatch(v, @"(\r\n|\r|\n)|(\s+)"):
                         type = TokenTypes.NewLine;
+                        break;
+                    case var v when Regex.IsMatch(v, @"^\s+$"):
+                        type = TokenTypes.Whitespace;
                         break;
                     case var v when Regex.IsMatch(v, @"^[+\-*/=<>]$"):
                         type = TokenTypes.Operator;
@@ -298,10 +315,6 @@ namespace SyntaxErrorIDE.Pages
 
                     case var v when Regex.IsMatch(v, @"^//.*$"):
                         type = TokenTypes.Comment;
-                        break;
-
-                    case var v when Regex.IsMatch(v, @"^\s+$"):
-                        type = TokenTypes.Whitespace;
                         break;
 
                     case var v when Regex.IsMatch(v, @"(\b\d+\b)"):
