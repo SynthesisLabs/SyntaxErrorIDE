@@ -1,0 +1,30 @@
+@page
+@{
+    Layout = null;
+}
+@model SyntaxErrorIDE.Pages.HighlightModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highlight</title>
+</head>
+
+<body>
+    <div class="text-center"></div>
+    @* <form method="post">
+        <button>Tokenize</button>
+    </form> *@
+
+    <p id="text"></p>
+
+    @Html.Raw(Model.HtmlContent)
+    </div>
+</body>
+
+</html>
