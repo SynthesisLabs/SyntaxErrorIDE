@@ -10,12 +10,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Highlight</title>
+    @await Html.PartialAsync("~/Pages/views/head.cshtml")
+    <title>Hightlight</title>
+    <style>
+        * {
+            font-family: monospace;
+            unicode-bidi: isolate;
+        }
+    </style>
 </head>
 
-<body>
+<body class="h-[100vh] w-[100%] bg-[#121212]">
     <div class="text-center"></div>
     @* <form method="post">
         <button>Tokenize</button>
