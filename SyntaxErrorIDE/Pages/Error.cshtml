@@ -2,35 +2,39 @@
 @model SyntaxErrorIDE.Pages.ErrorModel
 @{
     ViewData["Title"] = $"Error {Model.StatusCode}";
+    Layout = null;
 }
 <!doctype html>
 <html lang="en">
+
 <head>
     @await Html.PartialAsync("~/Pages/views/head.cshtml")
     <title>@Model.StatusCode</title>
 </head>
-<body>
-<main>
-    @if (Model.StatusCode == 404)
-    {
-        <div id="errfof" class="flex-col justify-center items-center m-auto">
-            <h1>404</h1>
-            <h2>Page Not Found</h2>
-            <p>The page you're looking for doesn't do you wish to go <a href="/">home?</a></p>
-        </div>
-    }
-    else
-    {
-        <h1 class="text-danger">Error @Model.StatusCode</h1>
-        <h2 class="text-danger">An error occurred while processing your request.</h2>
 
-        @if (Model.ShowRequestId)
+<body>
+    <main>
+        @if (Model.StatusCode == 404)
         {
-            <p>
-                <strong>Request ID:</strong> <code>@Model.RequestId</code>
-            </p>
+            <div id="errfof" class="flex-col justify-center items-center m-auto">
+                <h1>404</h1>
+                <h2>Page Not Found</h2>
+                <p>The page you're looking for doesn't do you wish to go <a href="/">home?</a></p>
+            </div>
         }
-    }
-</main>
+        else
+        {
+            <h1 class="text-danger">Error @Model.StatusCode</h1>
+            <h2 class="text-danger">An error occurred while processing your request.</h2>
+
+            @if (Model.ShowRequestId)
+            {
+                <p>
+                    <strong>Request ID:</strong> <code>@Model.RequestId</code>
+                </p>
+            }
+        }
+    </main>
 </body>
+
 </html>
